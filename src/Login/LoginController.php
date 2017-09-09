@@ -17,9 +17,12 @@ class LoginController implements AppInjectableInterface
 
 
     /**
-     * Constructor
+     * Injector for Login object.
+     *
+     * @param Login         $login
+     * @return void
      */
-    public function __construct(Login $login)
+    public function inject(Login $login)
     {
         $this->login = $login;
     }

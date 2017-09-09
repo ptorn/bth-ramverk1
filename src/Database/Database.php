@@ -41,7 +41,7 @@ class Database implements \Anax\Common\ConfigureInterface
             );
 
             $this->pdo->setAttribute(\PDO::ATTR_DEFAULT_FETCH_MODE, $this->config['fetch_mode']);
-            $this->pdo->setAttribute(\PDO::ATTR_EMULATE_PREPARES, false);
+            $this->pdo->setAttribute(\PDO::ATTR_EMULATE_PREPARES, true);
         } catch (\PDOException $e) {
             if ($this->config['debug_connect']) {
                 throw $e;
@@ -85,7 +85,7 @@ class Database implements \Anax\Common\ConfigureInterface
         if (!$this->stmt) {
             throw new \PDOException("Error preparing SQL query: $query");
         }
-
+        
         $res = $this->stmt->execute(is_array($params) ? $params : [$params]);
         if (!$res) {
             throw new \PDOException("Error execute SQL query: $query");

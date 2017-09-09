@@ -19,7 +19,7 @@ class Login
      *
      * @return self
      */
-    public function __construct($session, $db)
+    public function inject($session, $db)
     {
         $this->session = $session;
         $this->db = $db;

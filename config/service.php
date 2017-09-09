@@ -18,7 +18,8 @@ $app->rem               = new \Anax\RemServer\RemServer();
 $app->remController     = new \Anax\RemServer\RemServerController();
 $app->comController     = new \Peto16\Comment\CommentController();
 $app->commentStorage    = new \Peto16\Comment\CommentStorage();
-$app->loginController   = new \Peto16\Login\LoginController(new \Peto16\Login\Login($app->session, $app->db)); 
+$app->Login             = new \Peto16\Login\Login();
+$app->loginController   = new \Peto16\Login\LoginController(); 
 $app->adminController   = new \Peto16\Admin\AdminController();
 
 // Configure request
@@ -46,7 +47,6 @@ $app->view->configure("view.php");
 // Configure database
 $app->db->configure("database.php");
 
-
 // Configure navbar
 $app->navbar->setApp($app);
 $app->navbar->configure("navbar.php");
@@ -58,11 +58,13 @@ $app->remController->setApp($app);
 
 // Configure comment
 $app->comController->setApp($app);
+$app->commentStorage->inject($app->db);
 $app->comController->inject(new \Peto16\Comment\Comment($app->session, $app->commentStorage));
-$app->commentStorage->inject($app);
 
 // Configure login
+$app->Login->inject($app->session, $app->db);
 $app->loginController->setApp($app);
+$app->loginController->inject($app->Login);
 
 // Configure admin
 $app->adminController->setApp($app);

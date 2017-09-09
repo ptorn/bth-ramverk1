@@ -52,6 +52,10 @@ Jag har inte skrivit någon kod för detta ännu utan endast reflekterat över u
 ##Kmom02
 Tycker det går bättre och bättre med att strukturera min kod. Jag har valt att bygga mot databasen direkt för att spara lite tid. Jag har även implementerat login och olika användartyper som vanlig och administrator. Jag har gjort extrauppgifterna som att endast inloggade användare kan skriva kommentarer och redigera sina egna kommentarer medans administratorn kan redigera och radera allas kommentarer. När man raderar en kommentar så sätts en tidsstämpel så kommentarerna finns fortfarande kvar i databasen. 
 
+Användare är:
+doe/doe
+admin/admin
+
 **Vilka tidigare erfarenheter har du av MVC? Använde du någon speciell källa för att läsa på om MVC? Kan du med egna ord förklara någon fördel med kontroller/modell-begreppet, så som du ser på det?**
 
 Jag har inte direkt någon erfarenhet utav att jobba med MVC mer än det som vi kommit i kontakt med under utbildningen i bland annat oopython och i webbapp där vi försökte skapa modeller och använda oss utav en form av kontroller som skapade våra vyer. Annars så har jag mest varit inne och redigerat lite kod i olika moduler vilket man nu i efterhand har lärt sig ska undvikas utan istället för att modifiera så ska man utöka.

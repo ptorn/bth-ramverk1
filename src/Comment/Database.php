@@ -20,9 +20,9 @@ class Database implements StorageInterface
      * @param object    $app
      * @return void
      */
-    public function inject($app)
+    public function inject($dependency)
     {
-        $this->db = $app->db;
+        $this->db = $dependency;
         $this->db->connect();
     }
 
@@ -53,7 +53,7 @@ class Database implements StorageInterface
         $query = "SELECT * FROM " . self::TABLE . " WHERE id = ?;";
         if ($commentId === null) {
             $query = "SELECT * FROM VCommentsDetails;";
-            return $this->db->executeFetchAll($query);
+            return $this->db->executeFetchAll($query, []);
         }
         return $this->db->executeFetchAll($query, $commentId);
     }

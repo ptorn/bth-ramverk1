@@ -33,6 +33,6 @@ class Admin
 
     public function getUserLoggedIn()
     {
-                return $this->session->get('user');
+        return $this->session->get('user');
     }
 }

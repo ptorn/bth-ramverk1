@@ -98,7 +98,10 @@ class Comment
      */
     private function isLoggedInAdmin()
     {
-        return $this->session->get('user')->administrator;
+        if ($this->session->has('user')) {
+            return $this->session->get('user')->administrator;
+        }
+        return false;
     }
 
 
