@@ -50,7 +50,47 @@ Jag har inte skrivit någon kod för detta ännu utan endast reflekterat över u
 
 
 ##Kmom02
-Kommer snart...
+Tycker det går bättre och bättre med att strukturera min kod. Jag har valt att bygga mot databasen direkt för att spara lite tid. Jag har även implementerat login och olika användartyper som vanlig och administrator. Jag har gjort extrauppgifterna som att endast inloggade användare kan skriva kommentarer och redigera sina egna kommentarer medans administratorn kan redigera och radera allas kommentarer. När man raderar en kommentar så sätts en tidsstämpel så kommentarerna finns fortfarande kvar i databasen. 
+
+**Vilka tidigare erfarenheter har du av MVC? Använde du någon speciell källa för att läsa på om MVC? Kan du med egna ord förklara någon fördel med kontroller/modell-begreppet, så som du ser på det?**
+
+Jag har inte direkt någon erfarenhet utav att jobba med MVC mer än det som vi kommit i kontakt med under utbildningen i bland annat oopython och i webbapp där vi försökte skapa modeller och använda oss utav en form av kontroller som skapade våra vyer. Annars så har jag mest varit inne och redigerat lite kod i olika moduler vilket man nu i efterhand har lärt sig ska undvikas utan istället för att modifiera så ska man utöka.
+
+Jag ser många fördelar. Genom att bryta ut olika uppgifter till modeller så gör man det enkelt att byta ut en modell som använder ett interface som modulen förväntar sig mot en annan modell som implementerar samma interface så har man fortfarande kvar full funktionalitet. Tex så har jag implementerat ett interface till min kommentar modul där modellen CommentStorage implementerar ett interface som modulen kräver och då kan jag bara byta ut databas modellen mot vilken lagringsmodell som helst bara den implementerar interfacet så fungerar allt som det är tänkt.
+
+Koden blir även enklare att testa då all logik ligger i sina modeller som kan testas mycket enklare jämfört med om all logik hade legat i routrarna. 
+
+Likaså så ger kontrollern data till de vyer som kontrollern skapar så att vyerna kan jobba mot det som kontrollern skickar med och därmed förhindra att frontendutvecklare går rakt in i ramverket.
+
+Koden blir även lättare att resonera runt när man vet var saker och ting sker och i vilket lager. Blir lättare att förstå flödet.
+
+Jag tycker att det var rätt knepigt att komma igång med var saker och ting ska ske, men ju mer man jobbat på med uppgifterna så har det klarnat och jag har börjat se flödet på sättet som vi jobbar med det i Anax. Mina källor är de som tagits upp under kursmomentet. Har tidigare försökt mig på att klura ut hur flödet ska vara men har hela tiden stött på olika flöden så det har skapat lite förvirring i början. Därför tänkte jag att hålla mig till det som kursen fokuserar på för att börja med det. 
+
+**Kom du fram till vad begreppet SOLID innebar och vilka källor använde du? Kan du förklara SOLID på ett par rader med dina egna ord?**
+
+Tyckte videon PHP UK Conference 2017 - Gareth Ellis - Introduction to SOLID var riktigt bra att ta upp flödet och hur man bör tänka när man bygger upp sin arkitektur och vad som är fördelar och nackdelar. Många bra exempel som var enkla att förstå. 
+
+**Single responsibility principle (SRP)** - Menas med att en klass ansvarar för ett område och har endast ett skäl att ändras.
+
+**Open/closed principle (OCP)** - Klasser är stängda för modifiering och endast öppna för utökning.
+
+**Liskov substitution principle (LSP)**  - Detta bygger på att ett objekt av en klass ska kunna ersättas utav ett objekt från dess subklass utan att man ändrar programmets funktion.
+
+**Interface segregation principle (ISP)** – Istället för att ha ett enormt interface för olika program att arbeta mot så att ett program inte är beroende på funktioner som inte används. Därför är det bättre med många och enkla interface.
+
+**Dependency inversion principle (DIP)** – Klasser ska inte vara beroende utav varandra utan beroendet ska läggas som ett abstrakt gränssnitt som ligger på en högre nivå och som klasserna kan jobba med.
+
+**Gick arbetet med REM servern bra och du lyckades integrera den i din me-sida?**
+
+Det gick bra. Gick att integrera utan problem. Efter att ha gjort övningen så gick det väldigt smidigt att integrera. Det var en nyttig övning som fick mig att se samspelet och flödet på ett tydligt sätt. Kändes bra att jobba igenom ovningen och resonera under tiden för att se flödet.
+
+**Berätta om arbetet med din kommentarsmodul, hur långt har du kommit och hur tänker du?**
+
+Jag har skapat användare som loggar in på sidan för att kunna kommentera. Kommentarerna kan läsas om man inte är inloggad, men man måste logga in för att kunna kommentera. Min modul består utav en kontroller som man skickas till från routern. Kontrollern ligger i $app och behöver ett objekt utav klassen Comment som tilldelas via service.php och en init funktion i kontrollern. På så sätt är beroendet lyft till ett abstrakt plan. Likaså behöver Comment ett objekt utav CommentStorage och en session. Detta sköts ute i service.php
+
+CommentStorage implementerar ett interface så att Comment kan jobba mot det även om vi byter ut lagringsplats. CommentStorage utökar Databas vilket gör att vi kan bara byta ut Databas mot vilken klass som CommentStorage extendar utan att behöva ändra i några andra filer.
+Kontrollern ställer frågorna till Comment modellen och skapar därefter vyerna och skickar med den data som vyerna ska ha.
+Varje användare kan endast redigera och radera sina egna kommentarer. Administratorn däremot kan redigera och radera alla kommentarer.
 
 
 ##Kmom03

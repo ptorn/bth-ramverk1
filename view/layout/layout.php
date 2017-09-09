@@ -42,6 +42,9 @@
             <div class="row">
                 <main class="main">
                     <?php $this->renderRegion("main") ?>
+                    <?php if ($this->regionHasContent("main")) : ?>
+                        <?php $this->renderRegion("comments") ?>
+                    <?php endif; ?>
                 </main>
             </div>
         </div>

@@ -12,5 +12,7 @@ Information från [Ramverk1 - dbwebb](https://dbwebb.se/kurser/ramverk1)
 
 Ni kan följa mig på [Github](https://github.com/ptorn).
 
+Vill ni kika på repot för kursen så [klicka här](https://github.com/ptorn/bth-ramverk1)
+
 
 ![MVC från Wikipedia](../htdocs/img/313px-ModelViewControllerDiagram.png)

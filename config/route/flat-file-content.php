@@ -2,12 +2,6 @@
 /**
  * Routes for flat file content.
  */
-$app->router->add("", function () use ($app) {
-    // Add views to a specific region
-    $app->view->add("layout/header", [], "header");
-    $app->view->add("block/header-me", [], "header-block");
-});
-
 $app->router->always(function () use ($app) {
     // Get the current route and see if it matches a content/file
     $path = $app->request->getRoute();

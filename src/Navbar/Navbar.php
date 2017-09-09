@@ -9,8 +9,8 @@ class Navbar implements
     \Anax\Common\ConfigureInterface,
     \Anax\Common\AppInjectableInterface
 {
-    use \Anax\Common\ConfigureTrait,
-        \Anax\Common\AppInjectableTrait;
+    use \Anax\Common\ConfigureTrait;
+    use \Anax\Common\AppInjectableTrait;
 
 
 
@@ -34,7 +34,15 @@ class Navbar implements
      */
     public function routes($menu = "navbar")
     {
-        return $this->createNavRoutes($this->config[$menu]);
+        $result = $this->createNavRoutes($this->config[$menu]);
+        if ($this->isLoggedIn()) {
+            return array_filter($result, function ($item) {
+                return $item['title'] != "Login";
+            });
+        }
+        return array_filter($result, function ($item) {
+            return $item['title'] != "Logout";
+        });
     }
 
 
@@ -77,5 +85,20 @@ class Navbar implements
     {
         $this->app->view->add($template, [], $region);
         return $region;
+    }
+
+
+
+    /**
+     * Check if a user is logged in or not.
+     *
+     * @return boolean
+     */
+    public function isLoggedIn()
+    {
+        if ($this->app->session->has('user') != null) {
+            return true;
+        }
+        return false;
     }
 }

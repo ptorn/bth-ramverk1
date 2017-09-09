@@ -11,12 +11,22 @@ return [
                 "route" => "",
             ],
             "about" => [
-                "icon"  => "male",
+                "icon"  => "book",
                 "title"  => "Om",
                 "route" => "about",
             ],
+            "remserver" => [
+                "icon"  => "server",
+                "title"  => "REM Server",
+                "route" => "remserver",
+            ],
+            "comments" => [
+                "icon"  => "comment",
+                "title"  => "Kommentarer",
+                "route" => "comments",
+            ],
             "report" => [
-                "icon"  => "vcard",
+                "icon"  => "pencil",
                 "title"  => "Redovisning",
                 "route" => "report",
                 "submenu" => [
@@ -28,6 +38,16 @@ return [
                         ]
                     ]
                 ]
+                    ],
+            "login" => [
+                "icon"  => "lock",
+                "title"  => "Login",
+                "route" => "login",
+            ],
+            "logout" => [
+                "icon"  => "lock",
+                "title"  => "Logout",
+                "route" => "logout",
             ]
         ]
     ],
