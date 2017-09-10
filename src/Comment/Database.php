@@ -55,7 +55,7 @@ class Database implements StorageInterface
             $query = "SELECT * FROM VCommentsDetails;";
             return $this->db->executeFetchAll($query, []);
         }
-        return $this->db->executeFetchAll($query, $commentId);
+        return $this->db->executeFetchAll($query, $commentId)[0];
     }
 
 

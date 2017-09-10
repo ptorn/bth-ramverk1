@@ -41,12 +41,12 @@ return [
                     ],
             "login" => [
                 "icon"  => "lock",
-                "title"  => "Login",
+                "title"  => "Logga In",
                 "route" => "login",
             ],
             "logout" => [
                 "icon"  => "lock",
-                "title"  => "Logout",
+                "title"  => "Logga Ut",
                 "route" => "logout",
             ]
         ]

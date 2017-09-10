@@ -86,7 +86,10 @@ class Comment
      */
     public function getUserId()
     {
-        return $this->session->get('user')->id;
+        if ($this->session->has('user')) {
+            return $this->session->get('user')->id;
+        }
+        return false;
     }
 
 
@@ -133,10 +136,10 @@ class Comment
      * Get a comment with a given id.
      *
      * @param int           $id
-     * @return void
+     * @return object
      */
     public function getComment($id)
     {
-        return $this->comStorage->read($id)[0];
+        return $this->comStorage->read($id);
     }
 }

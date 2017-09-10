@@ -37,11 +37,11 @@ class Navbar implements
         $result = $this->createNavRoutes($this->config[$menu]);
         if ($this->isLoggedIn()) {
             return array_filter($result, function ($item) {
-                return $item['title'] != "Login";
+                return $item['route'] != "login";
             });
         }
         return array_filter($result, function ($item) {
-            return $item['title'] != "Logout";
+            return $item['route'] != "logout";
         });
     }
 
