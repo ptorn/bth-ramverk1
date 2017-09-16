@@ -2,40 +2,23 @@
 
 namespace Peto16\Admin;
 
-use \Anax\Common\AppInjectableInterface;
-use \Anax\Common\AppInjectableTrait;
+use \Anax\DI\InjectionAwareInterface;
+use \Anax\DI\InjectionAwareTrait;
 
-class AdminController implements AppInjectableInterface
+class AdminController implements InjectionAwareInterface
 {
-    use AppInjectableTrait;
-
-
-    public function __construct()
-    {
-        $this->admin = new \Peto16\Admin\Admin();
-    }
-
-
-
-    public function init()
-    {
-        $this->admin->inject([
-            "session" => $this->app->session,
-            "db" => $this->app->db
-        ]);
-    }
-
+    use InjectionAwareTrait;
 
 
     public function dashboard()
     {
-        if ($this->admin->isLoggedIn() != null) {
-            $user = $this->admin->getUserLoggedIn();
-            $this->app->view->add("admin/dashboard", [
+        $user = $this->di->get("user")->getCurrentUser();
+        if ($user) {
+            $this->di->get("view")->add("admin/dashboard", [
                 "user" => $user
             ], "main");
-            $this->app->renderPage(["title" => "Admin Dashboard"]);
+            $this->di->get("pageRender")->renderPage(["title" => "Admin Dashboard"]);
         }
-        $this->app->redirect("login");
+        $this->di->get("utils")->redirect("login");
     }
 }

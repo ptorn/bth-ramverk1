@@ -8,6 +8,25 @@ return [
     "routeFiles" => [
         [
             // These are for internal error handling and exceptions
+            "mount" => "",
+            "file" => __DIR__ . "/route2/custom.php",
+        ],
+        [
+            "mount" => "remserver/api",
+            "file" => __DIR__ . "/route2/remserver.php"
+
+        ],
+        [
+            "mount" => null,
+            "file" => __DIR__ . "/route2/comment.php"
+
+        ],
+        [
+            "mount" => null,
+            "file" => __DIR__ . "/route2/admin.php"
+        ],
+        [
+            // These are for internal error handling and exceptions
             "mount" => null,
             "file" => __DIR__ . "/route2/internal.php",
         ],

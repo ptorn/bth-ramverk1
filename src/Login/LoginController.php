@@ -2,15 +2,15 @@
 
 namespace Peto16\Login;
 
-use \Anax\Common\AppInjectableInterface;
-use \Anax\Common\AppInjectableTrait;
+use \Anax\DI\InjectionAwareInterface;
+use \Anax\DI\InjectionAwareTrait;
 
 /**
  * Controller for Login
  */
-class LoginController implements AppInjectableInterface
+class LoginController implements InjectionAwareInterface
 {
-    use AppInjectableTrait;
+    use InjectionAwareTrait;
 
     private $login;
 
@@ -36,11 +36,11 @@ class LoginController implements AppInjectableInterface
      */
     public function isLoggedIn()
     {
-        if ($this->login->isLoggedIn()) {
-            $this->app->redirect("admin");
+        if ($this->di->get("user")->getCurrentUser()) {
+            $this->di->get("response")->redirect("admin");
         }
-        $this->app->view->add("admin/login", [], "main");
-        $this->app->renderPage(["title" => "Login"]);
+        $this->di->get("view")->add("admin/login", [], "main");
+        $this->di->get("pageRender")->renderPage(["title" => "Login"]);
     }
 
 
@@ -53,7 +53,7 @@ class LoginController implements AppInjectableInterface
     public function logout()
     {
         $this->login->logout();
-        $this->app->redirect("login");
+        $this->di->get("utils")->redirect("login");
     }
 
 
@@ -65,9 +65,9 @@ class LoginController implements AppInjectableInterface
      */
     public function login()
     {
-        $username = $this->app->request->getPost("username", null);
-        $password = $this->app->request->getPost("password", null);
+        $username = $this->di->get("request")->getPost("username", null);
+        $password = $this->di->get("request")->getPost("password", null);
         $this->login->login($username, $password);
-        $this->app->redirect("admin");
+        $this->di->get("utils")->redirect("admin");
     }
 }

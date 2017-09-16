@@ -11,7 +11,14 @@
             <div class="gravatar"><img src="<?= htmlentities($comment->Gravatar); ?>"></div>
             <div class="author">Skriven av: <?= htmlentities($comment->Firstname) . " " . htmlentities($comment->Lastname); ?></div>
             <?php if ($comment->Owner || $comment->UserAdmin) : ?>
-            <div class="edit"><a href="<?= $this->app->url->create("comments/edit/" . $comment->CommentId); ?>") ?>Edit</a> - <a href="comments/delete/<?= $comment->CommentId ?>">Delete</a></div>
+            <div class="edit">
+                <a href="<?= $this->di->get("url")->create("comments/edit/" . $comment->CommentId); ?>">
+                    Edit
+                </a> -
+                <a href="comments/delete/<?= $comment->CommentId ?>">
+                    Delete
+                </a>
+            </div>
             <?php endif ; ?>
         </div>
     <?php endif ; ?>

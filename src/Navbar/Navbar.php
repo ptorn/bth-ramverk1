@@ -1,16 +1,19 @@
 <?php
 namespace Peto16\Navbar;
 
+use \Anax\DI\InjectionAwareInterface;
+use \Anax\DI\InjectionAwareTrait;
+use \Anax\Common\ConfigureInterface;
+use \Anax\Common\ConfigureTrait;
+
 /**
  * Navbar class.
  *
  */
-class Navbar implements
-    \Anax\Common\ConfigureInterface,
-    \Anax\Common\AppInjectableInterface
+class Navbar implements ConfigureInterface, InjectionAwareInterface
 {
-    use \Anax\Common\ConfigureTrait;
-    use \Anax\Common\AppInjectableTrait;
+    use ConfigureTrait;
+    use InjectionAwareTrait;
 
 
 
@@ -21,7 +24,7 @@ class Navbar implements
      */
     public function isActiveLink($item)
     {
-        $currentUrl = $this->app->request->getRoute();
+        $currentUrl = $this->di->get("request")->getRoute();
         return $currentUrl === $item['route'];
     }
 
@@ -60,7 +63,7 @@ class Navbar implements
                     "title"     => $item['title'],
                     "icon"      => $item['icon'],
                     "route"     => $item['route'],
-                    "url"       => $this->app->url->create($item['route']),
+                    "url"       => $this->di->get("url")->create($item['route']),
                     "submenu"   => $this->createNavRoutes($item['submenu'])
                 ];
             }
@@ -68,7 +71,7 @@ class Navbar implements
                 "title" => $item['title'],
                 "icon"  => $item['icon'],
                 "route" => $item['route'],
-                "url"   => $this->app->url->create($item['route'])
+                "url"   => $this->di->get("url")->create($item['route'])
             ];
         }, $level['items']);
     }
@@ -83,7 +86,7 @@ class Navbar implements
      */
     public function createNav($template, $region)
     {
-        $this->app->view->add($template, [], $region);
+        $this->di->get("view")->add($template, [], $region);
         return $region;
     }
 
@@ -96,7 +99,7 @@ class Navbar implements
      */
     public function isLoggedIn()
     {
-        if ($this->app->session->has('user') != null) {
+        if ($this->di->get('session')->has('user') != null) {
             return true;
         }
         return false;

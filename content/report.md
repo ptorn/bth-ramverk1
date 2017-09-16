@@ -50,7 +50,7 @@ Jag har inte skrivit någon kod för detta ännu utan endast reflekterat över u
 
 
 ##Kmom02
-Tycker det går bättre och bättre med att strukturera min kod. Jag har valt att bygga mot databasen direkt för att spara lite tid. Jag har även implementerat login och olika användartyper som vanlig och administrator. Jag har gjort extrauppgifterna som att endast inloggade användare kan skriva kommentarer och redigera sina egna kommentarer medans administratorn kan redigera och radera allas kommentarer. När man raderar en kommentar så sätts en tidsstämpel så kommentarerna finns fortfarande kvar i databasen. 
+Tycker det går bättre och bättre med att strukturera min kod. Jag har valt att bygga mot databasen direkt för att spara lite tid. Jag har även implementerat login och olika användartyper som vanlig och administrator. Jag har gjort extrauppgifterna som att endast inloggade användare kan skriva kommentarer och redigera sina egna kommentarer medans administratorn kan redigera och radera allas kommentarer. När man raderar en kommentar så sätts en tidsstämpel så kommentarerna finns fortfarande kvar i databasen.
 
 Användare är:
 doe/doe
@@ -62,17 +62,17 @@ Jag har inte direkt någon erfarenhet utav att jobba med MVC mer än det som vi 
 
 Jag ser många fördelar. Genom att bryta ut olika uppgifter till modeller så gör man det enkelt att byta ut en modell som använder ett interface som modulen förväntar sig mot en annan modell som implementerar samma interface så har man fortfarande kvar full funktionalitet. Tex så har jag implementerat ett interface till min kommentar modul där modellen CommentStorage implementerar ett interface som modulen kräver och då kan jag bara byta ut databas modellen mot vilken lagringsmodell som helst bara den implementerar interfacet så fungerar allt som det är tänkt.
 
-Koden blir även enklare att testa då all logik ligger i sina modeller som kan testas mycket enklare jämfört med om all logik hade legat i routrarna. 
+Koden blir även enklare att testa då all logik ligger i sina modeller som kan testas mycket enklare jämfört med om all logik hade legat i routrarna.
 
 Likaså så ger kontrollern data till de vyer som kontrollern skapar så att vyerna kan jobba mot det som kontrollern skickar med och därmed förhindra att frontendutvecklare går rakt in i ramverket.
 
 Koden blir även lättare att resonera runt när man vet var saker och ting sker och i vilket lager. Blir lättare att förstå flödet.
 
-Jag tycker att det var rätt knepigt att komma igång med var saker och ting ska ske, men ju mer man jobbat på med uppgifterna så har det klarnat och jag har börjat se flödet på sättet som vi jobbar med det i Anax. Mina källor är de som tagits upp under kursmomentet. Har tidigare försökt mig på att klura ut hur flödet ska vara men har hela tiden stött på olika flöden så det har skapat lite förvirring i början. Därför tänkte jag att hålla mig till det som kursen fokuserar på för att börja med det. 
+Jag tycker att det var rätt knepigt att komma igång med var saker och ting ska ske, men ju mer man jobbat på med uppgifterna så har det klarnat och jag har börjat se flödet på sättet som vi jobbar med det i Anax. Mina källor är de som tagits upp under kursmomentet. Har tidigare försökt mig på att klura ut hur flödet ska vara men har hela tiden stött på olika flöden så det har skapat lite förvirring i början. Därför tänkte jag att hålla mig till det som kursen fokuserar på för att börja med det.
 
 **Kom du fram till vad begreppet SOLID innebar och vilka källor använde du? Kan du förklara SOLID på ett par rader med dina egna ord?**
 
-Tyckte videon PHP UK Conference 2017 - Gareth Ellis - Introduction to SOLID var riktigt bra att ta upp flödet och hur man bör tänka när man bygger upp sin arkitektur och vad som är fördelar och nackdelar. Många bra exempel som var enkla att förstå. 
+Tyckte videon PHP UK Conference 2017 - Gareth Ellis - Introduction to SOLID var riktigt bra att ta upp flödet och hur man bör tänka när man bygger upp sin arkitektur och vad som är fördelar och nackdelar. Många bra exempel som var enkla att förstå.
 
 **Single responsibility principle (SRP)** - Menas med att en klass ansvarar för ett område och har endast ett skäl att ändras.
 
@@ -98,7 +98,29 @@ Varje användare kan endast redigera och radera sina egna kommentarer. Administr
 
 
 ##Kmom03
-Kommer snart...
+**Hur känns det att jobba med begreppen kring dependency injection, service locator och lazy loading?**
+
+Det känns bra. Tycker det känns som ett effektivt sätt att jobba och framförallt lazy loading som sparar resurser. Bättre att återanvänder objekt istället för att hela tiden skapa nya vilket tar upp resurser i onödan och att man skapar objekten när man behöver objekten och inte alla i önödan. Vill man dra det långt så varje onödig resurs sliter mycket på miljön i onödan. Om jag inte minns fel så var det någon video som tog upp hur man kan spara miljön genom att uppgradera till PHP7 så även denna lilla besparing av resurser är inte fel även om vår me-sida kanske inte är den mest resurskrävande och hårt belastad sida så är det något som vi webbprogrammerare måste tänka på. Så med det i bakhuvudet så känns det som ett givet val att tillämpa lazy loading. Dependency injection känns också bra. Vi lyfter beroendet till ett abstrakt plan och våra moduler behöver inte bry sig om vart beroendena kommer ifrån.
+
+Service locator känns på ett sätt bra att saker kopplas ihop nr de behövs och nr man behöver de så finns de på ett ställe.
+
+**Hur känns det att göra dig av med beroendet till $app, blir $di bättre?**
+
+Det var lite pill att gå över till $di, men det beror nog på att man lagt till många delar som behövde uppdateras. Tycker att med $di så blir det mycket tydligare var logiken hamnar och att controllerns roll blir mycket tydligare. Även om det kanske blir fler rader kod så tycker jag man ser tydligt var allt ska ligga. Annars så är det ingen större skillnad på att använda $di istället för $app. Gillar $di bättre än hur vi jobbade med $app tidigare.
+Hur känns det att återigen göra refaktoring på din me-sida, blir det förbättringar på kodstrukturen, eller bara annorlunda?
+Det känns bra. Jag har delat upp koden bättre och med lazy loading fått till en bättre uppdelning utav min kod för att lyfta ut beroendena på ett abstrakt plan. Vilket jag tycker känns bättre. Sen så känns det som man hela tiden tweakar sin kod och försöker göra den bättre.
+
+**Lyckades du införa begreppen kring DI när du vidareutvecklade ditt kommentarssystem?**
+
+Jag hade redan skrivit rätt mycket på mitt kommentarssystem så jag bytte mest ut $app till $di vilket gick bra. Jag har plockat bort allt som beror på $app och jobbar nu enbart med $di. Det gick smärtfritt även om det tog lite tid att byta ut $app på alla ställena. Det ända bekymret jag stötte på var att några filer hade bytt läs och skrivrättigheter utan att jag märkt det. Testar lite olika verktyg att koda i som säkert har påverkat, men när jag hittat felet så var det snabbt åtgärdat.
+
+**Påbörjade du arbetet (hur gick det) med databasmodellen eller avvaktar du till kommande kmom?**
+
+Jag implementerade redan min kommentarsmodul med en databaskoppling i kmom02 så jag har redan en modell på hur jag löst det. Dock får vi se om det räcker till kommande uppgifter.
+
+**Allmänna kommentare kring din me-sida och dess kodstruktur?**
+
+Rent allmänt så tycker jag att jag blir bättre på att strukturera mig och tillämpa MVC. Försöker att dela upp de olika delarnas ansvar och att varje klass ska ansvara för sitt. Jag ser hela tiden nya saker som jag kan förbättra och det blir en hel del refaktoring på min kod löpande.
 
 
 ##Kmom04

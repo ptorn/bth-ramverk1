@@ -1,15 +1,15 @@
 <?php
 namespace Peto16\Comment;
 
-use \Anax\Common\AppInjectableInterface;
-use \Anax\Common\AppInjectableTrait;
+use \Anax\DI\InjectionAwareInterface;
+use \Anax\DI\InjectionAwareTrait;
 
 /**
  * Controller for Comment
  */
-class CommentController implements AppInjectableInterface
+class CommentController implements InjectionAwareInterface
 {
-    use AppInjectableTrait;
+    use InjectionAwareTrait;
 
     private $comment;
 
@@ -21,9 +21,9 @@ class CommentController implements AppInjectableInterface
      * @param Comment $comment
      * @return void
      */
-    public function inject(Comment $comment)
+    public function init()
     {
-        $this->comment = $comment;
+        $this->comment = $this->di->get("comment");
     }
 
 
@@ -35,16 +35,16 @@ class CommentController implements AppInjectableInterface
      */
     public function addComment()
     {
-        $titleText = $this->app->request->getPost('title');
-        $commentText = $this->app->request->getPost('comment');
+        $titleText = $this->di->get("request")->getPost('title');
+        $commentText = $this->di->get("request")->getPost('comment');
         $this->comment->addComment($titleText, $commentText);
         $comments = $this->comment->getAllComments();
-        $this->app->view->add("comment/comment-page", [
+        $this->di->get("view")->add("comment/comment-page", [
             "comments" => $comments,
             "result" => "Kommentar skapad."
         ], "comments");
-        if ($this->app->session->has('user')) {
-            $this->app->view->add("comment/comment-form", [], "comments");
+        if ($this->di->get("user")->getCurrentUser()) {
+            $this->di->get("view")->add("comment/comment-form", [], "comments");
         }
     }
 
@@ -59,7 +59,7 @@ class CommentController implements AppInjectableInterface
     public function delComment($commentId)
     {
         $this->comment->delComment($commentId);
-        $this->app->redirect("comments");
+        $this->di->get("utils")->redirect("comments");
     }
 
 
@@ -72,12 +72,12 @@ class CommentController implements AppInjectableInterface
      */
     public function getComment($commentId)
     {
-        if ($this->app->session->has('user')) {
+        if ($this->di->get("user")->getCurrentUser()) {
             $comment = $this->comment->getComment($commentId);
-            $this->app->view->add("comment/comment-form", [
+            $this->di->get("view")->add("comment/comment-form", [
                 "comment" => $comment
             ], "main");
-            $this->app->renderPage(["title" => "Redigera kommentar"]);
+            $this->di->get("utils")->renderPage(["title" => "Redigera kommentar"]);
         }
     }
 
@@ -91,10 +91,10 @@ class CommentController implements AppInjectableInterface
      */
     public function editComment($commentId)
     {
-        $titleText = $this->app->request->getPost('title');
-        $commentText = $this->app->request->getPost('comment');
+        $titleText = $this->di->get("request")->getPost('title');
+        $commentText = $this->di->get("request")->getPost('comment');
         $this->comment->editComment($titleText, $commentText, $commentId);
-        $this->app->redirect("comments");
+        $this->di->get("utils")->redirect("comments");
     }
 
 
@@ -108,10 +108,9 @@ class CommentController implements AppInjectableInterface
     {
         $comments = $this->comment->getAllComments();
 
-        $this->app->view->add("comment/comment-page", ["comments" => $comments], "comments");
-        if ($this->app->session->has('user')) {
-            $this->app->view->add("comment/comment-form", [], "comments");
+        $this->di->get("view")->add("comment/comment-page", ["comments" => $comments], "comments");
+        if ($this->di->get("user")->getCurrentUser()) {
+            $this->di->get("view")->add("comment/comment-form", [], "comments");
         }
-        // $this->app->renderPage(["title" => "Kommentarer"]);
     }
 }

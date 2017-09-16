@@ -3,9 +3,9 @@ REM Server - a REST Mockup API
 
 Detta är en REM - server för att testa vid utveckling. Servern svarar på API anrop och lagrar sin data i sessionen.
 
-Det finns default data att testa här `api/users`.
+Det finns default data att testa här `remserver/api/users`.
 
-Man kan lägga till egna dataset så här `api/[datasets]`.
+Man kan lägga till egna dataset så här `remserver/api/[datasets]`.
 
 
 
@@ -14,8 +14,8 @@ Testa {#try}
 
 Ni kan testa med default data `users`.
 
-* [Hämta alla användare](api/users)
-* [Hämta användare med `id=1`](api/users/1)
+* [Hämta alla användare](remserver/api/users)
+* [Hämta användare med `id=1`](remserver/api/users/1)
 
 
 
@@ -27,8 +27,8 @@ API {#api}
 Hämta all data.
 
 ```text
-GET /api/[dataset]
-GET /api/users
+GET /remserver/api/[dataset]
+GET /remserver/api/users
 ```
 
 Resultat.
@@ -62,7 +62,7 @@ Alternativa parametrar är:
 * `limit` defaults to 25.
 
 ```text
-GET /api/users?offset=0&limit=25
+GET /remserver/api/users?offset=0&limit=25
 ```
 
 
@@ -72,7 +72,7 @@ GET /api/users?offset=0&limit=25
 Hämta en post baserat på id
 
 ```text
-GET /api/users/7
+GET /remserver/api/users/7
 ```
 
 Resultat.
@@ -92,10 +92,10 @@ Resultat.
 Lägg till en ny post till datan. Posten skapas om den inte redan finns och ger den ett id.
 
 ```text
-POST /api/[dataset]
+POST /remserver/api/[dataset]
 {"some": "thing"}
 
-POST /api/users
+POST /remserver/api/users
 {"firstName": "Mikael", "lastName": "Roos"}
 ```
 
@@ -121,10 +121,10 @@ Resultat.
 Uppdatera (insert/update) eller ersätt en post som redan finns.
 
 ```text
-PUT /api/[dataset]/1
+PUT /remserver/api/[dataset]/1
 {"id": 1, "other": "thing"}
 
-PUT /api/users/13
+PUT /remserver/api/users/13
 {"id": 13, "firstName": "MegaMic", "lastName": "Roos"}
 ```
 
@@ -152,9 +152,9 @@ Resultat.
 Radera en post.
 
 ```text
-DELETE /api/[dataset]/1
+DELETE /remserver/api/[dataset]/1
 
-DELETE /api/users/13
+DELETE /remserver/api/users/13
 ```
 
 Resultatet är alltid `null`.

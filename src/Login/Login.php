@@ -44,7 +44,6 @@ class Login
                 throw new Exception("Missing user");
             }
             if ($this->validate($password, $dbUser[0]->password)) {
-                echo "korrekt";
                 $this->session->set("user", $dbUser[0]);
                 return true;
             }
@@ -54,17 +53,6 @@ class Login
         }
     }
 
-
-
-    /**
-     * Check if user is logged in.
-     *
-     * @return boolean
-     */
-    public function isLoggedIn()
-    {
-        return $this->session->has('user');
-    }
 
 
 
