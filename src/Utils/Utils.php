@@ -1,11 +1,16 @@
 <?php
 
-namespace peto16\Utils;
+namespace Peto16\Utils;
 
 use Anax\Page\PageRenderInterface;
 use Anax\DI\InjectionAwareInterface;
 use Anax\DI\InjectionAwareTrait;
 
+/**
+ * Utility class for anax.
+ *
+ * @SuppressWarnings(PHPMD.ExitExpression)
+ */
 class Utils implements PageRenderInterface, InjectionAwareInterface
 {
     use InjectionAwareTrait;
@@ -36,7 +41,9 @@ class Utils implements PageRenderInterface, InjectionAwareInterface
 
         $view->add("layout/layout", $data, "layout");
         $body = $view->renderBuffered("layout");
+
         $this->di->get("response")->setBody($body)->send($status);
+        exit;
     }
 
 
@@ -50,6 +57,7 @@ class Utils implements PageRenderInterface, InjectionAwareInterface
     {
         $url = $this->di->get("url")->create($path);
         $this->di->get("response")->redirect($url);
+        exit;
     }
 
 
