@@ -37,7 +37,6 @@ class Utils implements PageRenderInterface, InjectionAwareInterface
         $view->add("layout/layout", $data, "layout");
         $body = $view->renderBuffered("layout");
         $this->di->get("response")->setBody($body)->send($status);
-        exit;
     }
 
 
@@ -51,7 +50,6 @@ class Utils implements PageRenderInterface, InjectionAwareInterface
     {
         $url = $this->di->get("url")->create($path);
         $this->di->get("response")->redirect($url);
-        exit;
     }
 
 
