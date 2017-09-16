@@ -8,8 +8,12 @@
             <div class="comment-content">
                 <?= htmlentities($comment->Comment); ?>
             </div>
-            <div class="gravatar"><img src="<?= htmlentities($comment->Gravatar); ?>"></div>
-            <div class="author">Skriven av: <?= htmlentities($comment->Firstname) . " " . htmlentities($comment->Lastname); ?></div>
+            <div class="gravatar">
+                <img src="<?= htmlentities($comment->Gravatar); ?>">
+            </div>
+            <div class="author">
+                Skriven av: <?= htmlentities($comment->Firstname) . " " . htmlentities($comment->Lastname); ?>
+            </div>
             <?php if ($comment->Owner || $comment->UserAdmin) : ?>
             <div class="edit">
                 <a href="<?= $this->di->get("url")->create("comments/edit/" . $comment->CommentId); ?>">

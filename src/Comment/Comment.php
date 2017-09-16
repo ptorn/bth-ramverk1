@@ -85,7 +85,10 @@ class Comment
      */
     public function getAllComments()
     {
-        $userId = $this->user->getCurrentUser()->id;
+        $userId = null;
+        if ($this->user->getCurrentUser()) {
+            $userId = $this->user->getCurrentUser()->id;
+        }
         $allComments = $this->comStorage->read();
         return array_map(function ($item) use ($userId) {
             $item->Owner = false;
