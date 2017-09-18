@@ -19,16 +19,15 @@ CREATE TABLE ramverk1_Users
     `lastname` VARCHAR(40) DEFAULT NULL,
     `administrator` BOOLEAN DEFAULT False,
     `enabled` BOOLEAN DEFAULT True,
-    `gravatar` VARCHAR(255) DEFAULT NULL,
 
     PRIMARY KEY (`id`),
     UNIQUE KEY `username_unique` (`username`)
 );
 
 INSERT INTO
-    ramverk1_Users(username, password, email, firstname, lastname, administrator, enabled, gravatar)
+    ramverk1_Users(username, password, email, firstname, lastname, administrator, enabled)
 VALUES
-    ('admin', '$2y$10$vaqfYKE2TfIzo7EQMxd8fOg3AvnPBZPTtV4l98aN4Ep6TkmjA2/Cm', 'admin@example.com', 'Peder', 'Tornberg', True, True, "https://s.gravatar.com/avatar/d6192d705954e94e2091f08250bee577"),
+    ('admin', '$2y$10$vaqfYKE2TfIzo7EQMxd8fOg3AvnPBZPTtV4l98aN4Ep6TkmjA2/Cm', 'peder.tornberg@gmail.com', 'Peder', 'Tornberg', True, True, "https://s.gravatar.com/avatar/d6192d705954e94e2091f08250bee577"),
     ('doe', '$2y$10$dYBys9cIIKEsdtQoiIiELOVkuRbcyfMZt7L8Pinw7JHDpZEol7UN6', 'doe@example.com', 'John', 'Doe', False, True, "https://s.gravatar.com/avatar/de21b8c123847c80205e93b301437b45"),
     ('bob', '$2y$10$bV/btm035m/Hv87RYB04JuTFN7opVra1zlBcvdKJHxTzBISmQeHSy', 'bob@example.com', 'Bob', 'Builder', False, False, ""),
     ('disabled', '$2y$10$bV/btm035m/Hv87RYB04JuTFN7opVra1zlBcvdKJHxTzBISmQeHSy', 'disabled@example.com', 'Pink', 'Panther', False, False, "");
@@ -76,8 +75,7 @@ SELECT
     U.firstname AS Firstname,
     U.lastname AS Lastname,
     U.administrator AS Admin,
-    U.enabled AS Enabled,
-    U.gravatar AS Gravatar
+    U.enabled AS Enabled
 FROM `ramverk1_Comment` AS C
     INNER JOIN `ramverk1_Users` AS U
         ON C.userId = U.id

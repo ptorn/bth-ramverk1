@@ -93,6 +93,7 @@ class Comment
         return array_map(function ($item) use ($userId) {
             $item->Owner = false;
             $item->UserAdmin = false;
+            $item->Gravatar = $this->user->generateGravatarUrl($item->Email);
             if ($item->UserId === $userId) {
                 $item->Owner = true;
             }

@@ -50,4 +50,19 @@ class User
         }
         return null;
     }
+
+
+
+    /**
+     * Generate gravatar from email or return default avatar.
+     * @param  string           $email email adress
+     * @return string           Gravatar url.
+     */
+    public function generateGravatarUrl($email = null)
+    {
+        if ($email) {
+            return "https://s.gravatar.com/avatar/" . md5(strtolower(trim($email)));
+        }
+        return "http://www.gravatar.com/avatar/?d=identicon";
+    }
 }
