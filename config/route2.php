@@ -7,6 +7,11 @@ return [
     // onto a base route.
     "routeFiles" => [
         [
+            // Add routes from bookController and mount on book/
+            "mount" => "book",
+            "file" => __DIR__ . "/route2/bookController.php",
+        ],
+        [
             // These are for internal error handling and exceptions
             "mount" => "",
             "file" => __DIR__ . "/route2/custom.php",
@@ -18,12 +23,16 @@ return [
         ],
         [
             "mount" => null,
-            "file" => __DIR__ . "/route2/comment.php"
+            "file" => __DIR__ . "/route2/commentController.php"
 
         ],
         [
-            "mount" => null,
-            "file" => __DIR__ . "/route2/admin.php"
+            "mount" => "user",
+            "file" => __DIR__ . "/route2/userController.php"
+        ],
+        [
+            "mount" => "admin",
+            "file" => __DIR__ . "/route2/adminController.php"
         ],
         [
             // These are for internal error handling and exceptions

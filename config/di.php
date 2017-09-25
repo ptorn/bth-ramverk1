@@ -17,7 +17,12 @@ return [
         ],
         "response" => [
             "shared" => true,
-            "callback" => "\Anax\Response\Response",
+            //"callback" => "\Anax\Response\Response",
+            "callback" => function () {
+                $obj = new \Anax\Response\ResponseUtility();
+                $obj->setDI($this);
+                return $obj;
+            }
         ],
         "url" => [
             "shared" => true,
@@ -62,6 +67,7 @@ return [
         ],
         "session" => [
             "shared" => true,
+            "active" => true,
             "callback" => function () {
                 $session = new \Anax\Session\SessionConfigurable();
                 $session->configure("session.php");
@@ -114,23 +120,6 @@ return [
                 return $navbar;
             }
         ],
-        "login" => [
-            "shared" => true,
-            "callback" => function () {
-                $login = new \Peto16\Login\Login();
-                $login->inject($this->get("session"), $this->get("db"));
-                return $login;
-            }
-        ],
-        "loginController" => [
-            "shared" => true,
-            "callback" => function () {
-                $loginController = new \Peto16\Login\LoginController();
-                $loginController->setDI($this);
-                $loginController->inject($this->get("login"));
-                return $loginController;
-            }
-        ],
         "adminController" => [
             "shared" => true,
             "callback" => function () {
@@ -142,9 +131,9 @@ return [
         "db" => [
             "shared" => true,
             "callback" => function () {
-                $db = new \Peto16\Database\Database();
-                $db->configure("database.php");
-                return $db;
+                $obj = new \Anax\Database\DatabaseQueryBuilder();
+                $obj->configure("database.php");
+                return $obj;
             }
         ],
         "rem" => [
@@ -173,20 +162,11 @@ return [
                 return $comController;
             }
         ],
-        "comment" => [
+        "commentService" => [
             "shared" => true,
             "callback" => function () {
-                $comStorage = $this->get("commentStorage");
-                $comment = new \Peto16\Comment\Comment($this->get("user"), $this->get("commentStorage"));
+                $comment = new \Peto16\Comment\CommentService($this);
                 return $comment;
-            }
-        ],
-        "commentStorage" => [
-            "shared" => true,
-            "callback" => function () {
-                $commentStorage = new \Peto16\Comment\CommentStorage();
-                $commentStorage->inject($this->get("db"));
-                return $commentStorage;
             }
         ],
         "utils" => [
@@ -197,14 +177,30 @@ return [
                 return $utils;
             }
         ],
-        "user" => [
+        "userService" => [
             "shared" => true,
             "callback" => function () {
-                $utils = new Peto16\User\User();
-                $utils->inject($this->get("session"));
-                return $utils;
+                $user = new Peto16\User\UserService($this);
+                // $user->inject($this->get("session"));
+                return $user;
             }
-        ]
-
+        ],
+        "userController" => [
+            "shared" => true,
+            "callback" => function () {
+                $userController = new \Peto16\User\UserController();
+                $userController->setDI($this);
+                $userController->init();
+                return $userController;
+            }
+        ],
+        "bookController" => [
+            "shared" => true,
+            "callback" => function () {
+                $obj = new \Anax\Book\BookController();
+                $obj->setDI($this);
+                return $obj;
+            }
+        ],
     ],
 ];

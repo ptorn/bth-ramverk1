@@ -3,6 +3,8 @@ namespace Peto16\Comment;
 
 use \Anax\DI\InjectionAwareInterface;
 use \Anax\DI\InjectionAwareTrait;
+use \Peto16\Comment\HTMLForm\CreateCommentForm;
+use \Peto16\Comment\HTMLForm\UpdateCommentForm;
 
 /**
  * Controller for Comment
@@ -11,41 +13,19 @@ class CommentController implements InjectionAwareInterface
 {
     use InjectionAwareTrait;
 
-    private $comment;
+    private $commentService;
 
 
 
     /**
-     * Inject the Comment object.
+     * Initiate the Controller.
      *
-     * @param Comment $comment
      * @return void
      */
     public function init()
     {
-        $this->comment = $this->di->get("comment");
-    }
-
-
-
-    /**
-     * Add a comment
-     *
-     * @return void
-     */
-    public function addComment()
-    {
-        $titleText = $this->di->get("request")->getPost('title');
-        $commentText = $this->di->get("request")->getPost('comment');
-        $this->comment->addComment($titleText, $commentText);
-        $comments = $this->comment->getAllComments();
-        $this->di->get("view")->add("comment/comment-page", [
-            "comments" => $comments,
-            "result" => "Kommentar skapad."
-        ], "comments");
-        if ($this->di->get("user")->getCurrentUser()) {
-            $this->di->get("view")->add("comment/comment-form", [], "comments");
-        }
+        $this->commentService = $this->di->get("commentService");
+        $this->utils = $this->di->get("utils");
     }
 
 
@@ -58,43 +38,35 @@ class CommentController implements InjectionAwareInterface
      */
     public function delComment($commentId)
     {
-        $this->comment->delComment($commentId);
-        $this->di->get("utils")->redirect("comments");
+        $this->commentService->delComment($commentId);
+        $this->utils->redirect("comments");
     }
 
 
 
     /**
-     * Get a comment
+     * Edit comment page.
      *
-     * @param int       $commentId
+     * @throws Exception
+     *
      * @return void
      */
-    public function getComment($commentId)
+    public function getPostEditComment($id)
     {
-        if ($this->di->get("user")->getCurrentUser()) {
-            $comment = $this->comment->getComment($commentId);
-            $this->di->get("view")->add("comment/comment-form", [
-                "comment" => $comment
-            ], "main");
-            $this->di->get("utils")->renderPage(["title" => "Redigera kommentar"]);
-        }
-    }
+        $title      = "Redigera kommentar";
+        $view       = $this->di->get("view");
+        $pageRender = $this->di->get("pageRender");
+        $form       = new UpdateCommentForm($this->di, $id);
 
+        $form->check();
 
+        $data = [
+            "content" => $form->getHTML(),
+        ];
 
-    /**
-     * Edit a comment
-     *
-     * @param int       $commentId
-     * @return void
-     */
-    public function editComment($commentId)
-    {
-        $titleText = $this->di->get("request")->getPost('title');
-        $commentText = $this->di->get("request")->getPost('comment');
-        $this->comment->editComment($titleText, $commentText, $commentId);
-        $this->di->get("utils")->redirect("comments");
+        $view->add("default2/article", $data);
+
+        $pageRender->renderPage(["title" => $title]);
     }
 
 
@@ -106,11 +78,19 @@ class CommentController implements InjectionAwareInterface
      */
     public function getCommentsPage()
     {
-        $comments = $this->comment->getAllComments();
-
+        $comments = $this->commentService->getAllComments();
         $this->di->get("view")->add("comment/comment-page", ["comments" => $comments], "comments");
-        if ($this->di->get("user")->getCurrentUser()) {
-            $this->di->get("view")->add("comment/comment-form", [], "comments");
+        $view       = $this->di->get("view");
+        $form       = new CreateCommentForm($this->di);
+
+        $form->check();
+
+        $data = [
+            "form" => $form->getHTML(),
+        ];
+
+        if ($this->di->get("userService")->getCurrentLoggedInUser()) {
+            $view->add("comment/crud/create", $data, "comments");
         }
     }
 }

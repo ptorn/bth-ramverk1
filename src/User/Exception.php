@@ -1,6 +1,6 @@
 <?php
 
-namespace Peto16\Login;
+namespace Peto16\User;
 
 /**
  * Namespaced exception.

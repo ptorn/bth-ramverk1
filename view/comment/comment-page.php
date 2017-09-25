@@ -2,24 +2,24 @@
     <div class="notice"><?= $result ; ?></div>
 <?php endif ; ?>
 <?php foreach ($comments as $comment) : ?>
-    <?php if ($comment->Deleted === null) : ?>
+    <?php if ($comment->deleted === null) : ?>
         <div class="comment-post">
-            <h2><?= htmlentities($comment->Title); ?></h2>
+            <h2><?= htmlentities($comment->title); ?></h2>
             <div class="comment-content">
-                <?= htmlentities($comment->Comment); ?>
+                <?= htmlentities($comment->comment); ?>
             </div>
             <div class="gravatar">
-                <img src="<?= htmlentities($comment->Gravatar); ?>">
+                <img src="<?= htmlentities($comment->gravatar); ?>">
             </div>
             <div class="author">
-                Skriven av: <?= htmlentities($comment->Firstname) . " " . htmlentities($comment->Lastname); ?>
+                Skriven av: <?= htmlentities($comment->firstname) . " " . htmlentities($comment->lastname); ?>
             </div>
-            <?php if ($comment->Owner || $comment->UserAdmin) : ?>
+            <?php if ($comment->owner || $comment->userAdmin) : ?>
             <div class="edit">
-                <a href="<?= $this->di->get("url")->create("comments/edit/" . $comment->CommentId); ?>">
+                <a href="<?= $this->di->get("url")->create("comments/edit/" . $comment->commentId); ?>">
                     Edit
                 </a> -
-                <a href="comments/delete/<?= $comment->CommentId ?>">
+                <a href="comments/delete/<?= $comment->commentId ?>">
                     Delete
                 </a>
             </div>

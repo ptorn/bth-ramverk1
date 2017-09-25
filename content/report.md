@@ -124,7 +124,25 @@ Rent allmänt så tycker jag att jag blir bättre på att strukturera mig och ti
 
 
 ##Kmom04
-Kommer snart...
+**Hur gick det att integrera formulärhantering och databashantering i ditt kommentarssystem?**
+
+Det var inga problem med integrationen utav formulärhanteringen, men med databasen så fick jag lite problem när mitt CommentStorage Interface krockade med databas modulen. Tanken som jag har haft med min kod är att kommentars modellen eller min CommentarService som hjälper till med att hantera kommentarerna ska inte behövas ändras i bara för att lagringsmodellen ändras. Så därför var det lämpligt med ett interface. Jag ändrade metodnamnen och i mitt interface just för att inte krocka och nu efter det så kan jag byta ut vilken lagringsmetod som helst om den tillämpar mitt interface. Så nu känns det bättre och man har delat upp logiken där den hör hemma. Likaså följde jag samma mönster för mina användare.
+
+**Berätta om din syn på Active record och liknande upplägg, ser du fördelar och nackdelar?**
+
+Tycker det fungerar bra och man får ett lager till emellan modellerna som får hantera hur själva kommunikationen ska ske med databasen. Känns enkelt att jobba med och blir snygg och tydlig kod. Känns som ett sätt att skriva enklare kod och med mindre upprepningar. Jag har inte stött på några nackdelar med Active record så jag kan inte säga något negativt ännu. Vad jag gillar är att man delar upp koden i lager och får smidigare metoder att jobba med.
+
+**Utveckla din syn på koden du nu har i ramverket och din kommentars- och användarkod. Hur känns det?**
+
+Känns bra. Jag valde dock att inte lägga till data från formulären i callbacken utan anropar istället metoderna i mina serviceklasser. Kändes lite rörigt att lägga logik för att hämta och lagra användare/kommentarer i formulärhanteringen när den uppgiften ligger i serviceklasserna. Nu skapas det en kommentar i callbacken till formuläret medans serviceklassen håller koll på var den ska sparas med hjälp utav min CommentStorage så jag har delat upp ansvaret och låtit varje del få ha sitt ansvar. Tycker att koden blir snyggare och vi delar upp den bättre. Har lite mer jag måste fila på, men tar det löpande.
+
+**Om du vill, och har kunskap om, kan du även berätta om din syn på ORM och designmönstret Data Mapper som är närbesläktade med Active Record. Du kanske har erfarenhet av likande upplägg i andra sammanhang?**
+
+Min erfarenhet sträcker sig till det som vi har tagit upp under utbildningen. I OOPython så kom vi i kontakt med ORM genom SQLAlchemy där vi mappade data i våra klasser. Med active record så får vi nästan samma upplägg. Det som jag har läst mig till under kursmomentet skulle väl vara att varje objekt som man skapar med active record ärver hela ORM vilket kanske kan bli mycket. Jämfört med objekt med data mapper som inte alls behöver veta något om databasen.
+
+**Vad tror du om begreppet scaffolding, kan det vara något att kika mer på?**
+
+Tycker att det är väldigt användbart när man kan spara tid genom att automatisera grovjobbet. Genom att snabbt få till en grundstruktur så kan man påbörja jobbet med att utveckla sin applikation. Tid är pengar. Som programmerare så vill man komma igång och utveckla så fort det går och kan man automatisera så är det vårt jobb att fixa det.
 
 
 ##Kmom05

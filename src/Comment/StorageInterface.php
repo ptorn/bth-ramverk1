@@ -7,8 +7,9 @@ namespace Peto16\Comment;
  */
 interface StorageInterface
 {
-    public function create($dataset);
-    public function delete($commentId);
-    public function update($dataset);
-    public function read($commentId = null);
+    public function createComment(Comment $comment);
+    public function deleteComment($commentId);
+    public function updateComment(Comment $comment);
+    public function readComment($commentId = null);
+    public function getCommentByField($field, $data);
 }

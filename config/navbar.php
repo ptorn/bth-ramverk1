@@ -25,6 +25,11 @@ return [
                 "title"  => "Kommentarer",
                 "route" => "comments",
             ],
+            "book" => [
+                "icon"  => "book",
+                "title"  => "Böcker",
+                "route" => "book",
+            ],
             "report" => [
                 "icon"  => "pencil",
                 "title"  => "Redovisning",
@@ -42,12 +47,12 @@ return [
             "login" => [
                 "icon"  => "lock",
                 "title"  => "Logga In",
-                "route" => "login",
+                "route" => "user/login",
             ],
             "logout" => [
                 "icon"  => "lock",
-                "title"  => "Logga Ut",
-                "route" => "logout",
+                "title"  => "Admin",
+                "route" => "admin",
             ]
         ]
     ],

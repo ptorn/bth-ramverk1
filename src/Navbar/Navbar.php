@@ -40,11 +40,11 @@ class Navbar implements ConfigureInterface, InjectionAwareInterface
         $result = $this->createNavRoutes($this->config[$menu]);
         if ($this->isLoggedIn()) {
             return array_filter($result, function ($item) {
-                return $item['route'] != "login";
+                return $item['route'] != "user/login";
             });
         }
         return array_filter($result, function ($item) {
-            return $item['route'] != "logout";
+            return $item['route'] != "admin";
         });
     }
 

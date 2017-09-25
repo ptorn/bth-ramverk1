@@ -6,6 +6,6 @@ use \Peto16\Comment\StorageInterface;
 /**
  * CommentStorage class
  */
-class CommentStorage extends Database implements StorageInterface
+class CommentStorage extends ActiveRecord implements StorageInterface
 {
 }

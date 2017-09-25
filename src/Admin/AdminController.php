@@ -12,10 +12,18 @@ class AdminController implements InjectionAwareInterface
 
     public function dashboard()
     {
-        $user = $this->di->get("user")->getCurrentUser();
+        $userService = $this->di->get("userService");
+        $user = $this->di->get("session")->get("user");
+
+        $users = [];
         if ($user) {
+            if ($user->administrator) {
+                $users = $userService->findAllUsers();
+            }
             $this->di->get("view")->add("admin/dashboard", [
-                "user" => $user
+                "user"          => $user,
+                "users"         => $users,
+                "gravatarUrl"   => $userService->generateGravatarUrl($user->email)
             ], "main");
             $this->di->get("pageRender")->renderPage(["title" => "Admin Dashboard"]);
         }
