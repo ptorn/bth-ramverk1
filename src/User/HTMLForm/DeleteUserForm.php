@@ -37,7 +37,7 @@ class DeleteUserForm extends FormModel
                     "label" => "Användarnamn",
                     "readonly" => true,
                     "type" => "text",
-                    "value" => $user->username,
+                    "value" => htmlentities($user->username),
                 ],
                 "confirm" => [
                     "required"    => true,

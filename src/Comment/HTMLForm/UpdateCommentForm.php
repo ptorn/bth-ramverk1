@@ -36,13 +36,13 @@ class UpdateCommentForm extends FormModel
                 "title" => [
                     "label"       => "Titel",
                     "type"        => "text",
-                    "value"       => $comment->title
+                    "value"       => htmlentities($comment->title)
                 ],
 
                 "comment" => [
                     "label"       => "Kommentar",
                     "type"        => "textarea",
-                    "value"       => $comment->comment
+                    "value"       => htmlentities($comment->comment)
 
                 ],
 

@@ -19,6 +19,7 @@ class DeleteForm extends FormModel
     public function __construct(DIInterface $di)
     {
         parent::__construct($di);
+
         $this->form->create(
             [
                 "id" => __CLASS__,
@@ -54,7 +55,8 @@ class DeleteForm extends FormModel
 
         $books = ["-1" => "Select an item..."];
         foreach ($book->findAll() as $obj) {
-            $books[$obj->id] = "{$obj->column1} ({$obj->id})";
+            $column1 = htmlentities($obj->column1);
+            $books[$obj->id] = "{$column1} ({$obj->id})";
         }
 
         return $books;

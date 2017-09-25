@@ -37,13 +37,13 @@ class UpdateForm extends FormModel
                 "column1" => [
                     "type" => "text",
                     "validation" => ["not_empty"],
-                    "value" => $book->column1,
+                    "value" => htmlentities($book->column1),
                 ],
 
                 "column2" => [
                     "type" => "text",
                     "validation" => ["not_empty"],
-                    "value" => $book->column2,
+                    "value" => htmlentities($book->column2),
                 ],
 
                 "submit" => [

@@ -21,7 +21,7 @@ $urlToDelete = url("book/delete");
 ?><h1>View all items</h1>
 
 <p>
-    <a href="<?= $urlToCreate ?>">Create</a> | 
+    <a href="<?= $urlToCreate ?>">Create</a> |
     <a href="<?= $urlToDelete ?>">Delete</a>
 </p>
 
@@ -43,8 +43,8 @@ endif;
         <td>
             <a href="<?= url("book/update/{$item->id}"); ?>"><?= $item->id ?></a>
         </td>
-        <td><?= $item->column1 ?></td>
-        <td><?= $item->column2 ?></td>
+        <td><?= htmlentities($item->column1) ?></td>
+        <td><?= htmlentities($item->column2) ?></td>
     </tr>
     <?php endforeach; ?>
 </table>

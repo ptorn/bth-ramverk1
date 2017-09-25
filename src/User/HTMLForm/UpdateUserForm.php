@@ -33,25 +33,25 @@ class UpdateUserForm extends FormModel
             "username" => [
                 "label"       => "Användarnamn",
                 "type"        => "text",
-                "value"       => $user->username
+                "value"       => htmlentities($user->username)
             ],
 
             "firstname" => [
                 "label"       => "Förnamn",
                 "type"        => "text",
-                "value"       => $user->firstname
+                "value"       => htmlentities($user->firstname)
             ],
 
             "lastname" => [
                 "label"       => "Efternamn",
                 "type"        => "text",
-                "value"       => $user->lastname
+                "value"       => htmlentities($user->lastname)
             ],
 
             "email" => [
                 "label"       => "Epost",
                 "type"        => "email",
-                "value"       => $user->email
+                "value"       => htmlentities($user->email)
             ],
 
             "enabled" => [
