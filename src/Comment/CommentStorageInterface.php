@@ -5,7 +5,7 @@ namespace Peto16\Comment;
 /**
  * Interface for CommentStorage
  */
-interface StorageInterface
+interface CommentStorageInterface
 {
     public function createComment(Comment $comment);
     public function deleteComment($commentId);

@@ -3,12 +3,12 @@
 namespace Peto16\User;
 
 use \Anax\Database\ActiveRecordModel;
-use \Peto16\User\StorageInterface;
+use \Peto16\User\UserStorageInterface;
 
 /**
  * Class to handle a user.
  */
-class ActiveRecord extends ActiveRecordModel implements StorageInterface
+class UserActiveRecordModel extends ActiveRecordModel implements UserStorageInterface
 {
 
     /**
@@ -30,21 +30,6 @@ class ActiveRecord extends ActiveRecordModel implements StorageInterface
     public $lastname;
     public $administrator;
     public $enabled;
-
-
-
-    /**
-     * Method to inject the dependency for the class
-     *
-     * @param object        $di
-     *
-     * @return void
-     */
-    public function inject($di)
-    {
-        $this->setDb($di->get("db"));
-    }
-
 
 
 

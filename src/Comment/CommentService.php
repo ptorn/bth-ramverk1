@@ -9,7 +9,8 @@ class CommentService
 {
 
     private $comStorage;
-    private $di;
+    private $session;
+    private $userService;
 
 
 
@@ -21,10 +22,9 @@ class CommentService
     public function __construct($di)
     {
         $this->comStorage = new CommentStorage();
-        $this->comStorage->inject($di);
+        $this->comStorage->setDb($di->get("db"));
         $this->session = $di->get("session");
         $this->userService = $di->get("userService");
-        $this->di = $di;
     }
 
 

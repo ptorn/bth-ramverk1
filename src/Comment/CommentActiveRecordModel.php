@@ -2,34 +2,20 @@
 
 namespace Peto16\Comment;
 
-use \Peto16\Comment\StorageInterface;
+use \Peto16\Comment\CommentStorageInterface;
 use \Anax\Database\ActiveRecordModel;
 
 /**
  * Class to communicate with the Database
  */
-class ActiveRecord extends ActiveRecordModel implements StorageInterface
+class CommentActiveRecordModel extends ActiveRecordModel implements CommentStorageInterface
 {
     protected $tableName = "ramverk1_Comment";
-    // protected $db;
 
     public $id;
     public $userId;
     public $title;
     public $comment;
-
-
-
-    /**
-     * Method to inject the dependency for the class
-     *
-     * @param object    $di
-     * @return void
-     */
-    public function inject($di)
-    {
-        $this->setDb($di->get("db"));
-    }
 
 
 

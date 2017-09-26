@@ -1,11 +1,11 @@
 <?php
 namespace Peto16\User;
 
-use \Peto16\User\StorageInterface;
+use \Peto16\User\UserStorageInterface;
 
 /**
  * UserStorage class
  */
-class UserStorage extends ActiveRecord implements StorageInterface
+class UserStorage extends UserActiveRecordModel implements UserStorageInterface
 {
 }

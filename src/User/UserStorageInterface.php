@@ -5,7 +5,7 @@ namespace Peto16\User;
 /**
  * Interface for UserStorage
  */
-interface StorageInterface
+interface UserStorageInterface
 {
     public function createUser($dataset);
     public function deleteUser($commentId);

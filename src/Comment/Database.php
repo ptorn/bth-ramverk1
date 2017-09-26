@@ -2,13 +2,13 @@
 
 namespace Peto16\Comment;
 
-use \Peto16\Comment\StorageInterface;
+use \Peto16\Comment\CommentStorageInterface;
 use \Anax\Database\Database as AnaxDatabase;
 
 /**
  * Class to communicate with the Database
  */
-class Database extends AnaxDatabase implements StorageInterface
+class Database extends AnaxDatabase implements CommentStorageInterface
 {
     const TABLE = "ramverk1_Comment";
 

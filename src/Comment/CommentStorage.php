@@ -1,11 +1,11 @@
 <?php
 namespace Peto16\Comment;
 
-use \Peto16\Comment\StorageInterface;
+use \Peto16\Comment\CommentStorageInterface;
 
 /**
  * CommentStorage class
  */
-class CommentStorage extends ActiveRecord implements StorageInterface
+class CommentStorage extends CommentActiveRecordModel implements CommentStorageInterface
 {
 }

@@ -6,7 +6,7 @@ class UserService
 {
     private $userStorage;
     private $session;
-    private $di;
+
 
 
     /**
@@ -16,10 +16,10 @@ class UserService
     public function __construct($di)
     {
         $this->userStorage = new UserStorage();
-        $this->userStorage->inject($di);
+        $this->userStorage->setDb($di->get("db"));
         $this->session = $di->get("session");
-        $this->di = $di;
     }
+
 
 
     /**
