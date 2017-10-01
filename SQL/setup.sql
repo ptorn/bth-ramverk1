@@ -23,7 +23,9 @@ CREATE TABLE ramverk1_User
     `deleted` DATETIME DEFAULT NULL,
 
     PRIMARY KEY (`id`),
-    UNIQUE KEY `username_unique` (`username`)
+    UNIQUE KEY `username_unique` (`username`),
+    UNIQUE KEY `email_unique` (`email`)
+
 );
 
 INSERT INTO

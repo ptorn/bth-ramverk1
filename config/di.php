@@ -181,7 +181,6 @@ return [
             "shared" => true,
             "callback" => function () {
                 $user = new Peto16\User\UserService($this);
-                // $user->inject($this->get("session"));
                 return $user;
             }
         ],

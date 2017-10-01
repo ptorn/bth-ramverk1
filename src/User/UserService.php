@@ -30,6 +30,12 @@ class UserService
      */
     public function createUser($user)
     {
+        if ($this->userStorage->getUserByField("email", $user->email)) {
+            throw new Exception("E-postadress används redan.");
+        }
+        if ($this->userStorage->getUserByField("username", $user->username)) {
+            throw new Exception("Användarnamn redan taget.");
+        }
         $this->userStorage->createUser($user);
     }
 
@@ -60,6 +66,7 @@ class UserService
         if ($this->validLoggedInAdmin()) {
             return $this->userStorage->deleteUser($id);
         }
+        return false;
     }
 
 
@@ -78,9 +85,11 @@ class UserService
     {
         $user = new User();
         $userVarArray = get_object_vars($user);
-        $userData = $this->userStorage->getUserByField($field, $data);
-
         $arrayKeys = array_keys($userVarArray);
+        $userData = $this->userStorage->getUserByField($field, $data);
+        if (!$userData) {
+            return false;
+        }
         foreach ($arrayKeys as $key) {
             $user->{$key} = $userData->$key;
         }
@@ -130,12 +139,12 @@ class UserService
             throw new Exception("Error, not valid credentials.");
         }
 
-        if ($user->enabled === 0) {
+        if ((int)$user->enabled === 0) {
             throw new Exception("Error, disabled account.");
         }
 
         if ($this->validatePassword($password, $user->password)) {
-            $this->di->get("session")->set("user", $user);
+            $this->session->set("user", $user);
             return true;
         }
         throw new Exception("Error, not valid credentials.");

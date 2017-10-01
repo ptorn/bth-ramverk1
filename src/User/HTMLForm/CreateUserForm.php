@@ -84,7 +84,7 @@ class CreateUserForm extends FormModel
         // Check password matches
         if ($password !== $passwordAgain) {
             $this->form->rememberValues();
-            $this->form->addOutput("Password did not match.");
+            $this->form->addOutput("Lösenorden är ej identiska.");
             return false;
         }
 
@@ -98,11 +98,15 @@ class CreateUserForm extends FormModel
         $user->enabled = 1;
         $user->administrator = 0;
 
+        try {
+            // Save user
+            $this->di->get("userService")->createUser($user);
+        } catch (\Peto16\User\Exception $e) {
+            $this->form->addOutput($e->getMessage());
+            return false;
+        }
 
-        // Save user
-        $this->di->get("userService")->createUser($user);
-
-        $this->form->addOutput("User was created.");
+        $this->form->addOutput("Användare skapad.");
         return true;
     }
 }
