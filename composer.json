@@ -15,7 +15,8 @@
         "anax/di": "^1.0",
         "anax/page": "^1.0",
         "anax/htmlform": "^1.0",
-        "anax/database": "^1.1"
+        "anax/database": "^1.1",
+        "ptorn/bth-anax-user": "^1.0"
     },
     "autoload": {
         "psr-4": {

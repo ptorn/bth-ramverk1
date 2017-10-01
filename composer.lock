@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "c9382407014d38dda53b5312578e960e",
+    "content-hash": "90d5a6f0e2ad3a94e977b6eae667c965",
     "packages": [
         {
             "name": "anax/common",
@@ -865,6 +865,55 @@
                 "imageprocessing"
             ],
             "time": "2017-03-30T22:47:55+00:00"
+        },
+        {
+            "name": "ptorn/bth-anax-user",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ptorn/bth-anax-user.git",
+                "reference": "85d398600c523706a9a9fc6de5ef0ebdfe14372c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ptorn/bth-anax-user/zipball/85d398600c523706a9a9fc6de5ef0ebdfe14372c",
+                "reference": "85d398600c523706a9a9fc6de5ef0ebdfe14372c",
+                "shasum": ""
+            },
+            "require": {
+                "anax/database": "^1.1",
+                "anax/htmlform": "^1.0",
+                "php": ">=5.6"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Anax\\": "src/",
+                    "Peto16\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Peder Tornberg",
+                    "email": "peder.tornberg@gmail.com",
+                    "homepage": "https://dbwebb.se",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Anax user module.",
+            "homepage": "https://dbwebb.se/anax",
+            "keywords": [
+                "boilerplate",
+                "education",
+                "framework",
+                "micro",
+                "mvc"
+            ],
+            "time": "2017-10-01T18:36:47+00:00"
         },
         {
             "name": "scrivo/highlight.php",

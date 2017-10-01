@@ -1,5 +1,6 @@
 <?php
 return [
+    "mount" => "user",
     "routes" => [
         [
             "info" => "Login user.",

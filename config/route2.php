@@ -27,10 +27,6 @@ return [
 
         ],
         [
-            "mount" => "user",
-            "file" => __DIR__ . "/route2/userController.php"
-        ],
-        [
             "mount" => "admin",
             "file" => __DIR__ . "/route2/adminController.php"
         ],
@@ -52,6 +48,7 @@ return [
         [
             // Keep this last since its a catch all
             "mount" => null,
+            "sort" => 999,
             "file" => __DIR__ . "/route2/404.php",
         ],
     ],
