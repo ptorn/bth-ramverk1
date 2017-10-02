@@ -868,16 +868,16 @@
         },
         {
             "name": "ptorn/bth-anax-user",
-            "version": "v1.0.0",
+            "version": "v1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ptorn/bth-anax-user.git",
-                "reference": "85d398600c523706a9a9fc6de5ef0ebdfe14372c"
+                "reference": "f11fac668bf76bf821ecd0f036ede92b01ae8a58"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ptorn/bth-anax-user/zipball/85d398600c523706a9a9fc6de5ef0ebdfe14372c",
-                "reference": "85d398600c523706a9a9fc6de5ef0ebdfe14372c",
+                "url": "https://api.github.com/repos/ptorn/bth-anax-user/zipball/f11fac668bf76bf821ecd0f036ede92b01ae8a58",
+                "reference": "f11fac668bf76bf821ecd0f036ede92b01ae8a58",
                 "shasum": ""
             },
             "require": {
@@ -913,7 +913,7 @@
                 "micro",
                 "mvc"
             ],
-            "time": "2017-10-01T18:36:47+00:00"
+            "time": "2017-10-02T08:34:31+00:00"
         },
         {
             "name": "scrivo/highlight.php",

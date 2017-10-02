@@ -146,8 +146,29 @@ Tycker att det är väldigt användbart när man kan spara tid genom att automat
 
 
 ##Kmom05
-Kommer snart...
+**Hur gick arbetet med att lyfta ut koden ur me-sidan och placera i en egen modul?**
 
+Det gick bra. Känns väldigt smidigt. Ska man använda samma modul i flera installationer och vill kunna uppdatera på ett enkelt sätt så är det väldigt smidigt att använda sig utav composer. Tycker jag har tänkt mer på min kod och vilka beroenden de egentligen har och har gjort lite små ändringar för att få en så smidig modul som möjligt så att man kan plocka modulen och använda i andra sammanhang och inte låst till det som vi gör just nu.
+
+Hittade ställen där min kod inte täckte upp alla möjliga händelser och kanske inte gav det som man förväntade sig vid ett visst tillfälle så där kände jag att när man jobbade mer med enhetstester så fick jag mer koll på de olika händelserna i koden och kunde få lite bättre kvalitet på koden.
+
+**Flöt det på bra med GitHub och kopplingen till Packagist?**
+
+Ja det var inget som var problematiskt utan allt gick bekymmersfritt. Väldigt smidigt att kunna ha det automatiserat. Tagga och pusha så sköts det i bakgrunden. Magiskt. Känns självklart nu när vi jobbar med moduler så här och kunna dela upp. Ser fram emot delarna med automatiska tester utav koden i nästa kursmoment.
+
+**Hur gick det att åter installera modulen i din me-sida med composer, kunde du följa du din installationsmanual?**
+
+Jag följde min manual steg för steg och det fungerade som tänkt och gick smärtfritt. Det var bara att göra en composer require ptorn/bth-anax-user och kopiera de filerna som jag angivit i min Readme.
+Följde guiden när jag installerade modulen i min anax installation som nu använder min nya modul.
+
+**Hur väl lyckas du enhetstesta din modul och hur mycket kodtäckning fick du med?**
+
+Jag har inte hunnit få 100% på hela modulen utan ligger just nu på 66.67%. Har en bit kvar att gå, men behöver lägga lite mer tid på att se hur jag ska kunna testa de olika delarna som jag har kvar. Har försökt att täcka in så mycket som möjligt, men har inte klurat ut hur jag ska testa min controller klass som renderar sidorna.
+
+**Några reflektioner över skillnaden med och utan modul?**
+
+Först så känner jag att ska man bygga upp en kodbas och underhålla den samtidigt som den ska användas på många olika ställen så är detta ett väldigt bra sätt att jobba på. När vi automatiserar mer så minskar vi de mänskliga felen som kan uppstå.
+Känner att det är så här man vill jobba och underhålla sin kod. Moduler som integreras i ramverket och skapar grunden för sin applikation. Lättare att testa sin modul i en isolerad miljö och inte blanda in övriga delar utan man avgränsar varje modul.
 
 ##Kmom06
 Kommer snart...
