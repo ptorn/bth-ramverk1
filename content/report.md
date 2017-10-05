@@ -171,7 +171,28 @@ Först så känner jag att ska man bygga upp en kodbas och underhålla den samti
 Känner att det är så här man vill jobba och underhålla sin kod. Moduler som integreras i ramverket och skapar grunden för sin applikation. Lättare att testa sin modul i en isolerad miljö och inte blanda in övriga delar utan man avgränsar varje modul.
 
 ##Kmom06
-Kommer snart...
+
+**Har du någon erfarenhet av automatiserade testar och CI sedan tidigare?**
+
+Jag har inga egna tidigare erfarenheter angående detta. Jag har mest sett det användas utav olika personer som jag följer. Detta är något som jag velat fördjupa mig i. Efter detta kursmomentet så känns det som att man har fått en bra koll på hur man ska jobba med de olika verktygen. och det känns bra nu när man fått använda sig utav det.
+
+**Hur ser du på begreppen, bra, onödigt, nödvändigt, tidskrävande?**
+
+Allt som kan spara tid och öka kodkvaliteten är en bra väg att gå. Man är bara en människa och man gör misstag. Jag har sett saker som jag missat, men som snappats upp av de automatiska testerna så det blir ett bättre resultat i slutändan. Skulle nog säga att det är nödvändigt när man jobbar med andra på ett större projekt och andra är beroende utav ens kod. Då känns det bra att veta att modulen löser det som den ska lösa och testerna ser till att hålla en uppdaterad hur det går löpande. Då kan man jobba vidare med sin modul och utveckla den löpande och ändå ha koll på sin kod.
+
+Man får en tydlig bild utav modulens liv och kan se var olika problem introduceras och utav vem. Man får en tydlig historik när ny kod läggs till och av vem så man kan rätta till sina misstag.
+
+**Hur stor kodtäckning lyckades du uppnå i din modul?**
+
+Jag kom upp i 92%. Ska se om jag inte kan komma upp lite högre. Måste kika på hur jag ska kunna testa formulären som skapar användaren för att kunna nå högre. Annars tycker jag det har varit väldigt lärorikt. Jag började med att använda mig utav en fil-baserad SQLite databas när jag gjorde mina tester. Databasen skrevs över med exempeldata mellan testerna, men fick ändå problem med att databasen var låst så jag fick använda mig utav SQLite i minnet vilket startade en process per test istället för att låsa upp filen så det fungerade utan problem att testa efter det.
+
+**Berätta hur det gick att integrera mot de olika externa tjänsterna?**
+
+Det gick bra. Var inga konstigheter att lösa eftersom allt var så välanpassat till Github så det var löst genom bara några klick. Det som var nyttigt var att få klicka runt och se fördelarna med de olika verktygen. Man fick ganska snabbt en bild utav vad de olika verktygen gjorde. Även om det känns onödigt med verktyg som kollar samma saker så var det rätt nyttigt att få chansen att prova olika tjänster. Jag följde artikeln och integrerade min modul mot alla tjänsterna som togs upp.
+
+**Vilken extern tjänst uppskattade du mest, eller har du förslag på ytterligare externa tjänster att använda?**
+
+Alla reagerade lite olika på sakerna. Den som jag vände mig till mest för att se resultatet blev Scrutinizer där jag tyckte man fick bra information om koden och det var lätt att navigera runt på sidan. Travis och CircleCI kändes mest att man bara kollade så det var grönt. Kollade det som man själv gjorde innan och nu är det automatiserat. Scrutinizer gjorde det där lilla extra och verkligen analyserade koden. SensioLabs hittade bortkommenterad kod så man kunde rensa upp och snygga till koden lite. Överlag så känns det som vår verktygslåda har utvecklats ytterligare med väldigt användbara verktyg.
 
 
 ##Kmom07/10

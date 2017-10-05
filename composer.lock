@@ -450,16 +450,16 @@
         },
         {
             "name": "anax/session",
-            "version": "v1.0.3",
+            "version": "v1.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/canax/session.git",
-                "reference": "7dd0c410f85f3501c97069c874179bc8b7a9065d"
+                "reference": "a55a474c1bba4759b79db3822cd5b7dcd67c055b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/canax/session/zipball/7dd0c410f85f3501c97069c874179bc8b7a9065d",
-                "reference": "7dd0c410f85f3501c97069c874179bc8b7a9065d",
+                "url": "https://api.github.com/repos/canax/session/zipball/a55a474c1bba4759b79db3822cd5b7dcd67c055b",
+                "reference": "a55a474c1bba4759b79db3822cd5b7dcd67c055b",
                 "shasum": ""
             },
             "require": {
@@ -498,20 +498,20 @@
                 "micro",
                 "mvc"
             ],
-            "time": "2017-08-17T15:52:40+00:00"
+            "time": "2017-10-02T15:54:22+00:00"
         },
         {
             "name": "anax/textfilter",
-            "version": "v1.0.1",
+            "version": "v1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/canax/textfilter.git",
-                "reference": "16999dc137d005f332e71459802f44310309f7f1"
+                "reference": "0fe7b6839a86a2256d22b7f59d10ee92663f89f1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/canax/textfilter/zipball/16999dc137d005f332e71459802f44310309f7f1",
-                "reference": "16999dc137d005f332e71459802f44310309f7f1",
+                "url": "https://api.github.com/repos/canax/textfilter/zipball/0fe7b6839a86a2256d22b7f59d10ee92663f89f1",
+                "reference": "0fe7b6839a86a2256d22b7f59d10ee92663f89f1",
                 "shasum": ""
             },
             "require": {
@@ -552,7 +552,7 @@
                 "micro",
                 "mvc"
             ],
-            "time": "2017-08-03T08:24:17+00:00"
+            "time": "2017-10-02T10:25:31+00:00"
         },
         {
             "name": "anax/url",
@@ -868,16 +868,16 @@
         },
         {
             "name": "ptorn/bth-anax-user",
-            "version": "v1.0.1",
+            "version": "v1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ptorn/bth-anax-user.git",
-                "reference": "f11fac668bf76bf821ecd0f036ede92b01ae8a58"
+                "reference": "e5cb071d5e488af4d34631433396be41eab02d37"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ptorn/bth-anax-user/zipball/f11fac668bf76bf821ecd0f036ede92b01ae8a58",
-                "reference": "f11fac668bf76bf821ecd0f036ede92b01ae8a58",
+                "url": "https://api.github.com/repos/ptorn/bth-anax-user/zipball/e5cb071d5e488af4d34631433396be41eab02d37",
+                "reference": "e5cb071d5e488af4d34631433396be41eab02d37",
                 "shasum": ""
             },
             "require": {
@@ -889,7 +889,8 @@
             "autoload": {
                 "psr-4": {
                     "Anax\\": "src/",
-                    "Peto16\\": "src/"
+                    "Peto16\\": "src/",
+                    "testing\\": "test/src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -913,7 +914,7 @@
                 "micro",
                 "mvc"
             ],
-            "time": "2017-10-02T08:34:31+00:00"
+            "time": "2017-10-05T11:47:59+00:00"
         },
         {
             "name": "scrivo/highlight.php",
