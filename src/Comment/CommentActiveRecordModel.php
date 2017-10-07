@@ -27,7 +27,6 @@ class CommentActiveRecordModel extends ActiveRecordModel implements CommentStora
      */
     public function createComment(Comment $comment)
     {
-        $this->tableName = "ramverk1_Comment";
         $this->setCommentData($comment);
         $this->save();
     }
@@ -42,12 +41,46 @@ class CommentActiveRecordModel extends ActiveRecordModel implements CommentStora
      */
     public function readComment($commentId = null)
     {
-        $this->tableName = "VCommentsDetails";
         $this->id = $commentId;
         if ($commentId === null) {
-            return $this->findAll();
+            return $this->db->connect()
+                            ->select("C.id AS commentId,
+                                C.title AS title,
+                                C.comment AS comment,
+                                U.id AS userId,
+                                C.created AS created,
+                                C.updated AS updated,
+                                C.deleted AS deleted,
+                                U.email AS email,
+                                U.firstname AS firstname,
+                                U.lastname AS lastname,
+                                U.administrator AS admin,
+                                U.enabled AS enabled")
+                            ->from($this->tableName . " AS C")
+                            ->join("ramverk1_User AS U", "C.userId = U.id")
+                            ->orderBy("CommentId")
+                            ->execute()
+                            ->fetchAllClass(get_class($this));
         }
-        return $this->find("commentId", $this->id);
+        return $this->db->connect()
+                        ->select("C.id AS commentId,
+                            C.title AS title,
+                            C.comment AS comment,
+                            U.id AS userId,
+                            C.created AS created,
+                            C.updated AS updated,
+                            C.deleted AS deleted,
+                            U.email AS email,
+                            U.firstname AS firstname,
+                            U.lastname AS lastname,
+                            U.administrator AS admin,
+                            U.enabled AS enabled")
+                        ->from($this->tableName . " AS C")
+                        ->join("ramverk1_User AS U", "C.userId = U.id")
+                        ->where("commentId = " . $commentId)
+                        ->orderBy("CommentId")
+                        ->execute()
+                        ->fetchAllClass(get_class($this));
     }
 
 
@@ -60,7 +93,6 @@ class CommentActiveRecordModel extends ActiveRecordModel implements CommentStora
      */
     public function updateComment(Comment $comment)
     {
-        $this->tableName = "ramverk1_Comment";
         $this->setCommentData($comment);
         $this->updated = date("Y-m-d H:i:s");
         return $this->save();
@@ -76,7 +108,6 @@ class CommentActiveRecordModel extends ActiveRecordModel implements CommentStora
      */
     public function deleteComment($commentId)
     {
-        $this->tableName = "ramverk1_Comment";
         $this->find("id", $commentId);
         $this->deleted = date("Y-m-d H:i:s");
         return $this->save();

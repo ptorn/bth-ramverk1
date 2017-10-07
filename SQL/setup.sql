@@ -42,6 +42,7 @@ CREATE TABLE `ramverk1_Comment`
 (
     `id` INT AUTO_INCREMENT NOT NULL,
     `userId` INT,
+    `contentId` INT,
     `title` VARCHAR(255) DEFAULT "No title",
     `comment` TEXT,
 
@@ -70,27 +71,3 @@ CREATE TABLE ramverk1_Book (
     `column1` VARCHAR(256) NOT NULL,
     `column2` VARCHAR(256) NOT NULL
 ) ENGINE INNODB CHARACTER SET utf8 COLLATE utf8_swedish_ci;
--- -------------------------
--- Comments
--- -------------------------
--- VCommentsDetails
-DROP VIEW IF EXISTS VCommentsDetails;
-CREATE VIEW VCommentsDetails AS
-SELECT
-    C.id AS commentId,
-    C.title AS title,
-    C.comment AS comment,
-    U.id AS userId,
-    C.created AS created,
-    C.updated AS updated,
-    C.deleted AS deleted,
-    U.email AS email,
-    U.firstname AS firstname,
-    U.lastname AS lastname,
-    U.administrator AS admin,
-    U.enabled AS enabled
-FROM `ramverk1_Comment` AS C
-    INNER JOIN `ramverk1_User` AS U
-        ON C.userId = U.id
-ORDER BY CommentId
-;
