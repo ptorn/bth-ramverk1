@@ -196,4 +196,82 @@ Alla reagerade lite olika på sakerna. Den som jag vände mig till mest för att
 
 
 ##Kmom07/10
-Kommer snart...
+
+WGTOTW -Kmom10 Ramverk1
+
+Följande användare fungerar:
+
+admin/admin
+doe/doe
+
+**Krav 1, 2, 3**
+
+Till en början så skapade jag ett repo på github ”ptorn/ramverk1-QandA”. Som grund för uppgiften så scaffoldade jag fram en installation utav Anax som jag commitade till github som min första commit.
+
+Hemsidan skulle skyddas utav ett login så det jag gjorde var att jag gjorde en ”composer install ptorn/bth-anax-user” och installerade min användarmodul som tog hand om hela användardelen. Den modulen är nu ett beroende för projektet. Man loggar in genom att gå till ”user/login” och där fylla i sina användaruppgifter. Har man inget konto så kan man skapa ett. När man loggat in så kan man gå till administrations delen och där ändra sina uppgifter. Med hjälp utav e-postadressen så hämtar jag användarens gravatarbild som är kopplad till e-postadressen.
+
+Hemsidan innehåller en förstasida där jag har en välkomnande text som efterföljs utav de 3 senaste frågorna. Klickar man på en fråga så kommer man till frågans sida och där kan man se svaren som är kopplade till frågorna. I högra kolumnen så listar jag de mest populära taggarna. Taggarna är i sintur länkade till en sida där alla poster som delar samma tag listas. Under i samma kolumn så listas de mest aktiva användarna och deras rang.
+
+Nästa sida är ”Frågor” som listar alla frågor i en lång lista där jag kan sortera på datumet som frågorna skapades samt jag kan rösta på frågorna.
+
+Varje fråga visar antalet röster. Man ser antalet ”tummen-upp” och antalet ”tummen-ner” Frågan får en rang som är differensen mellan tummen-upp och tummen-ner. Kommer gå in lite mer på röstningen i Krav nr 4.
+
+Det finns en ”Om” sida där jag beskriver projektet och mig själv. Om-sidan innehåller också en länk till GitHub-repot för projektet.
+
+Man kan bara läsa frågor, svar och kommentarer utan att vara inloggad. Som inloggad användare så kan man ställa en fråga. Varje fråga kopplas till en användare. Varje fråga kan ha svar och varje svar kan ha kommentarer. Svaret på en fråga kopplas till användaren och frågan som den är ett svar för. Likaså är kommentarerna kopplade till ett svar som är kopplat till en fråga och användaren som skrivit det. På så sätt har man full koll på vem som skrivit vad och till vilken fråga,svar och kommentar det är.
+
+Varje fråga kopplas till taggar som ligger i databasen. När man skapar en fråga så kan man lägga till frågan till taggar genom att skriva taggarna kommaseparerade. Finns taggen inte så skapas den och frågan kopplas till taggen. Finns den redan så kopplas bara frågan till taggen. Taggarna listas under en egen sida ”Taggar” och där kan man klicka på en tagg för att lista alla frågor som är kopplade till taggen. Likaså på första sidan så listas de populärsate taggarna och hur många frågor som är kopplade till taggen. Genom att klicka där så kommer man till samma sida som listar alla frågor som är kopplade till just den taggen.
+
+Varje fråga kan ha många svar. Kommer gå in mer på hur man kan hantera svaren i krav 4. Varje svar kan i sin tur ha flera kommentarer. Frågorna, svaren och kommentarerna kan alla hantera markdown.
+
+Webbplatsen finns på GitHub där man med hjälp utav README.md filen kan installera den själv för att använda den. I README.md filen på GitHub så ser man statusen på TravisCi och scrutinizer som är kopplade till repot.
+
+**Krav 4**
+
+Varje användare som har skrivit en fråga kan själva välja vilket svar som de vill acceptera som ”rätt” svar på sin fråga. Det är bara frågeställaren själv som kan acceptera svaret på sin fråga. Frågan får då en notis som visar att just det svaret är det accepterade svaret. Skulle ett annat svar dyka upp som är bättre så kan frågeställaren välja att acceptera det bättre svaret och då markeras det svaret som accepterat och det tidigare accepterade svaret förlorar sin notis.
+
+Man kan rösta på varje fråga,svar och kommentar. Varje användare kan rösta endast en gång på varje fråga. Antingen röstar man tummen-upp eller tummen-ner. Betyget på varje fråga blir differensen mellan tummen-upp och tummen-ner så baserat på det värdet så får frågorna, svaren och kommentarerna olika rang.
+
+Under sidan med ”Frågor” så listas varje fråga med sin Rang och man kan rösta på varje fråga. Man kan även se hur många svar en fråga har samt hur många kommentarer som finns under frågan och svaren.
+
+Frågorna som listas under frågor kan sorteras efter fallande och stigande datum som bygger på datumet som de skrevs. Koden kollar så att endast tillåtna variabler används för att undvika att den kraschar eller att någon försöker missbruka sidan.
+
+**Krav 5**
+
+Jag har infört ett poängsystem som bygger på att varje användare får poäng för varje fråga,svar och kommentar som användaren har skrivit. En användare får också poäng för varje tummen-upp som användaren får på något av sina frågor, svar eller kommentarer. Allt detta summeras till ett värde som blir en användares rang. Användarens rang finns med och som listas på första sidan.
+
+När en användare är inloggad så kan användaren gå in via navbaren ”admin/QandA-resultat” där kan en användare se sin status. Där kan användaren se sin information samt vilken nuvarande rang är.
+
+Användaren kan även se alla sina frågor, svar och kommentarer och kan direkt klicka sig vidare till just den frågan, svaret eller kommentaren. Här kan man o0ckså se hur många gånger användaren har röstat på en fråga, svar eller en kommentar.
+
+**Krav 6**
+
+Tycker att jag har fått till en bra sida som fungerar som tänkt och är väldigt smidig. Har jobbat lite med bootstrap som jag inte har använt så mycket tidigare. Första gången jag använde bootstrap var i oopython och efter det så har jag byggt på det som vi lärt oss i design-kursen så jag tänkte jag ville ge mig på det igen för att lära mig lite mer.
+
+Tycker det är något som jag har gjort extra från min sida eftersom det är relativt nytt för mig så man har fått sätta sig in i det lite mer. Just med att jobba med kolumnerna och responsiviteten för mindre skärmar är något som mest syns på första sidan samt sidan med informationen om en användares status över sitt användade utav QandA.
+
+Jag har även byggt hemsidan med tanke på att lyfta ut hela QandA som en egen modul så man enkelt kan installera funktionaliteten som en egen modul via packagist. Som exempel så har jag tänkt på att ha en separat DI fil och separata router filer så det vore enkelt att skapa en modul på Packagist. Tanken var att scaffolda och köra composer require på min usermodul och på QandA-modul för att få till all funktionalitet. Tiden rann iväg på slutet så jag han inte lägga upp den på packagist. Ville bara lyfta fram hur jag resonerat under projektets gång och vad min tanke var med det hela.
+
+Har försökt få en bra struktur på det hela där var sak är på sin plats.
+
+**Allmänt**
+
+Det har varit ett stort projekt som har tagit mycket tid och energi att genomföra och det är med nöd och näppe som jag levererar i tid. Mycket att jonglera med heltidsjobb, familj och studier. Så om kursen varit för stor så är jag kanske fel man att svara eftersom jag redan har begränsat med tid. Jag har gjort vad jag har kunnat för att leverera i tid. Mitt största bekymmer har varit tiden. Ett sånt här projekt kräver sina kod-timmar och jag känner att med mer timmar i mitt liv så hade jag kunnat rensa upp lite mer i koden och lyfta ut saker så jag hade kunnat göra det mer DRY. Hade velat jobba lite mer med designen och Bootstrap.
+
+Tycker det har varit lagom svårt. Inget som jag känt att jag inte kunnat lösa utan mest att det har tagit tid.
+
+Jag tycker att jag fick till det bra med uppdelningen för att hålla så rena objekt som möjligt även om det känns som det blev många filer så känns det organiserat och allt på sin plats.
+
+Jag tampades lite med tanken att binda enkla objekt till ”ActiveRecordModel” då jag känner att ett objekt inte ska bry sig om var det lagras utan i den objektorienterade världen så borde vi dela upp det enligt SOLID där ”ActiveRekordModel” i min mening bryter mot SRP då den inte bara är ett enkelt objekt utan innehåller också all logik som hör till var det lagras. Så jag delade upp koden och Skapade storage-klasser som utökade ”AktiveRekordModel” och använde det som lagrings klass som utnyttjades utav en service-klass som hanterade objekten och såg till att de lagrades via storage-klassen som tillämpade ett interface så det hela skulle bli lite mer objekt orienterat. Hade inte mer tid att kika på repository och tillämpa det, men spontant så känns det som en bra väg att gå.
+
+**Avslutnigsvis**
+
+Tycker att materialet har varit fullt tillräckligt för att genomföra kursen. Det som saknades dock i material från utbildningen var lite mer ingående om enhetstester. Det fick jag söka mig till lite mer från nätet och kika tillbaka lite på tidigare kurser där vi var inne och nosade lite.
+
+Hade nog också velat se möjligheten att använd ett Repository som alternativ till ActiveRecordModel. Annars har jag varit väldigt nöjd med kursen.
+
+Det jag gillade mest var hur vi jobbade med moduler och fick in ett effektivt sätt att jobba. Det hjälpte mig även i det individuella projektet där jag direkt fick användning utav min modul och kunde snabbt komma igång och sparade då även tid.
+
+Känns som kursen verkligen prickat rätt i hur man jobbar på ett effektivt sätt och även löpande med continious integreation. Nyttigt med verktygen som vi fått för att granska sin kod. Känns som man jobbar på ett bättre sätt och skriver mer kvalitativ kod än innan så det känns som man är på rätt väg.
+
+Kursen får **9/10** utav mig. Riktigt givande kurs som täckte upp mycket.

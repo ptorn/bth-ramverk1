@@ -1,5 +1,5 @@
 <?php
-$routes = $app->navbar->routes();
+$routes = $di->get("navbar")->routes();
 ?>
 <div class="site-logo-text">
     Peder Tornberg
@@ -9,11 +9,11 @@ $routes = $app->navbar->routes();
     <div class="rm-navbar-top rm-navbar rm-desktop">
         <ul>
             <?php foreach ($routes as $route) : ?>
-            <li class="<?= $app->navbar->isActiveLink($route) ? "active" : "" ?> nav-item">
+            <li class="<?= $di->get("navbar")->isActiveLink($route) ? "active" : "" ?> nav-item">
                 <a
                     href="<?= $route['url'] ?>"
                     title="<?= $route['title'] ?>"
-                    class="<?= $app->navbar->isActiveLink($route) ? "active" : "" ?> nav-link"
+                    class="<?= $di->get("navbar")->isActiveLink($route) ? "active" : "" ?> nav-link"
                 >
                     <?= $route['title'] ?>
                 </a>
@@ -33,11 +33,11 @@ $routes = $app->navbar->routes();
     <div id="mobile-nav-container" class="hide">
         <ul>
             <?php foreach ($routes as $route) : ?>
-            <li class="<?= $app->navbar->isActiveLink($route) ? "active" : "" ?>">
+            <li class="<?= $di->get("navbar")->isActiveLink($route) ? "active" : "" ?>">
                 <a
                     href="<?= $route['url'] ?>"
                     title="<?= $route['title'] ?>"
-                    class="<?= $app->navbar->isActiveLink($route) ? "active" : "" ?>"
+                    class="<?= $di->get("navbar")->isActiveLink($route) ? "active" : "" ?>"
                 >
                     <i class="fa fa-<?= $route['icon'] ?>"></i> <?= $route['title'] ?>
                 </a>

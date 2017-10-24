@@ -43,7 +43,7 @@ return [
                         ]
                     ]
                 ]
-                    ],
+            ],
             "login" => [
                 "icon"  => "lock",
                 "title"  => "Logga In",

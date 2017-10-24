@@ -2,16 +2,16 @@
 <?php if ($this->regionHasContent("footer")) : ?>
 <div class="navbar-wrap">
     <?php
-    $routes = $app->navbar->routes("social");
+    $routes = $di->get("navbar")->routes("social");
     ?>
     <div class="contact-nav">
         <ul>
             <?php foreach ($routes as $route) : ?>
-            <li class="<?= $app->navbar->isActiveLink($route) ? "active" : "" ?>">
+            <li class="<?= $di->get("navbar")->isActiveLink($route) ? "active" : "" ?>">
                 <a
                     href="<?= $route['url'] ?>"
                     title="<?= $route['title'] ?>"
-                    class="<?= $app->navbar->isActiveLink($route) ? "active" : "" ?>"
+                    class="<?= $di->get("navbar")->isActiveLink($route) ? "active" : "" ?>"
                 >
                     <i class="fa fa-<?= $route['icon'] ?>"></i> <?= $route['title'] ?>
                 </a>

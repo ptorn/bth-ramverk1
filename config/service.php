@@ -19,7 +19,7 @@ $app->remController     = new \Anax\RemServer\RemServerController();
 $app->comController     = new \Peto16\Comment\CommentController();
 $app->commentStorage    = new \Peto16\Comment\CommentStorage();
 $app->Login             = new \Peto16\Login\Login();
-$app->loginController   = new \Peto16\Login\LoginController(); 
+$app->loginController   = new \Peto16\Login\LoginController();
 $app->adminController   = new \Peto16\Admin\AdminController();
 
 // Configure request

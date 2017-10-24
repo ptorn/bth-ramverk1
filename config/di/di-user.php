@@ -8,7 +8,7 @@ return [
         "userService" => [
             "shared" => true,
             "callback" => function () {
-                $user = new Peto16\User\UserService($this);
+                $user = new \Peto16\User\UserService($this);
                 return $user;
             }
         ],
