@@ -230,11 +230,13 @@ Webbplatsen finns på GitHub där man med hjälp utav README.md filen kan instal
 
 Varje användare som har skrivit en fråga kan själva välja vilket svar som de vill acceptera som ”rätt” svar på sin fråga. Det är bara frågeställaren själv som kan acceptera svaret på sin fråga. Frågan får då en notis som visar att just det svaret är det accepterade svaret. Skulle ett annat svar dyka upp som är bättre så kan frågeställaren välja att acceptera det bättre svaret och då markeras det svaret som accepterat och det tidigare accepterade svaret förlorar sin notis.
 
-Man kan rösta på varje fråga,svar och kommentar. Varje användare kan rösta endast en gång på varje fråga. Antingen röstar man tummen-upp eller tummen-ner. Betyget på varje fråga blir differensen mellan tummen-upp och tummen-ner så baserat på det värdet så får frågorna, svaren och kommentarerna olika rang.
+Man kan rösta på varje fråga,svar och kommentar. Varje användare kan rösta endast en gång på varje fråga. Antingen röstar man tummen-upp eller tummen-ner. Betyget på varje fråga blir differensen mellan tummen-upp och tummen-ner så baserat på det värdet så får frågorna, svaren och kommentarerna olika rang.  Rösterna kopplas till användaren och innehållet som den röstar på.
 
 Under sidan med ”Frågor” så listas varje fråga med sin Rang och man kan rösta på varje fråga. Man kan även se hur många svar en fråga har samt hur många kommentarer som finns under frågan och svaren.
 
 Frågorna som listas under frågor kan sorteras efter fallande och stigande datum som bygger på datumet som de skrevs. Koden kollar så att endast tillåtna variabler används för att undvika att den kraschar eller att någon försöker missbruka sidan.
+
+Man kan även sortera på frågornas rang på frågesidan. Allt hålls isär i databasen i egna tabeller så man kan se vilka användare som har gjort vad och då följa upp allt med deras status.
 
 **Krav 5**
 
